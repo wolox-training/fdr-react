@@ -1,0 +1,15 @@
+.title {
+  align-items: center;
+  display: flex;
+  margin: 10px;
+  position: relative;
+
+  p {
+    color: $black;
+    font-family: 'Roboto', sans-serif;
+    font-size: 40px;
+    left: 85px;
+    position: absolute;
+    top: 57px;
+  }
+}
