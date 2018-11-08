@@ -8,7 +8,7 @@
   background-color: $green;
   border: 2px;
   border-radius: 5px;
-  box-shadow: -10px -10px 0 0 $grey;
+  box-shadow: -10px -10px 0 0 white, -12px -12px 0 0 $green, -8px -12px 0 0 $green, -12px -8px 0 0 $green;
   display: inline-flex;
   flex-direction: column;
   padding: $padding-medium;
