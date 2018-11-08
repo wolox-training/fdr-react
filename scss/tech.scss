@@ -1,6 +1,9 @@
 .tech {
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 50px;
+  width: 100%;
 }
 
 .tech-info-box {
