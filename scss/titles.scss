@@ -1,15 +1,19 @@
 .title {
   align-items: center;
+  background-image: url('../img/triangle.svg');
+  background-repeat: no-repeat;
+  background-size: $title-decoration-width $title-decoration-height;
   display: flex;
+  height: $title-decoration-height;
   margin: 10px;
   position: relative;
+  width: 100%;  
+}
 
-  p {
-    color: $black;
-    font-family: 'Roboto', sans-serif;
-    font-size: 40px;
-    left: 85px;
-    position: absolute;
-    top: 57px;
-  }
+.title-name {
+  bottom: 28px;
+  color: $black;
+  font-size: $text-big;
+  left: 50px;
+  position: absolute;
 }
