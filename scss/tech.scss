@@ -8,12 +8,18 @@
     align-items: center;
     background-color: $green;
     border-radius: 5px;
-    box-shadow: -10px -10px 0 0 white, -10px -10px 0 1px $green;
+    box-shadow: -10px -10px 0 0 $white, -10px -10px 0 1px $green;
     display: flex;
     flex-direction: column;
     padding: $padding-medium;
     margin: $margin-big;
-    width: 200px;
+    width: 200px; 
+    transition: box-shadow 0.2s ease; 
+    
+    &:hover {
+      box-shadow: 10px 10px 0 0 $white, 10px 10px 0 1px $green;
+      transition: box-shadow 0.2s ease;
+    }
   
     .logo {
       width: $tech-logo-size;
@@ -41,4 +47,6 @@
       }
     }
   }
+
+  
 }
