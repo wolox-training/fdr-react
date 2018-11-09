@@ -4,10 +4,9 @@
   padding: 30px;
   width: 100%;
 
-  .box {    
+  .box {
     align-items: center;
     background-color: $green;
-    border: 2px;
     border-radius: 5px;
     box-shadow: -10px -10px 0 0 white, -10px -10px 0 1px $green;
     display: flex;
@@ -16,7 +15,7 @@
     margin: $margin-big;
     width: 200px;
   
-    .img {
+    .logo {
       width: $tech-logo-size;
       height: $tech-logo-size;
     }
@@ -29,15 +28,16 @@
       text-align: center;
     
       .name {
-        margin: $padding-small;
+        margin: $margin-small;
       }
-  
+
       .release {
-        margin: $padding-small;
+        font-weight: bold; 
+        margin: $margin-small;
       }
-  
+
       .desc {
-        margin: $padding-big;
+        margin: $margin-big;
       }
     }
   }
