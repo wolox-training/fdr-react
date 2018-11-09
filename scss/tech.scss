@@ -1,7 +1,6 @@
 .tech {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
   padding: 30px;
   width: 100%;
 
@@ -10,36 +9,36 @@
     background-color: $green;
     border: 2px;
     border-radius: 5px;
-    box-shadow: -10px -10px 0 0 white, -10px -10px 0 3px $green;
-    display: inline-flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-bottom: 40px;
-    padding: $padding-medium;
-    width: 200px;
-  }
-
-  .img {
-    width: $tech-logo-size;
-  }
-
-  .text {
-    align-items: center;
+    box-shadow: -10px -10px 0 0 white, -10px -10px 0 1px $green;
     display: flex;
     flex-direction: column;
-    font-size: $text-medium;
-    text-align: center;
+    padding: $padding-medium;
+    margin: $margin-big;
+    width: 200px;
   
-    .name {
-      margin: $padding-small;
+    .img {
+      width: $tech-logo-size;
+      height: $tech-logo-size;
     }
-
-    .release {
-      margin: $padding-small;
-    }
-
-    .desc {
-      margin: $padding-big;
+  
+    .text {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      font-size: $text-medium;
+      text-align: center;
+    
+      .name {
+        margin: $padding-small;
+      }
+  
+      .release {
+        margin: $padding-small;
+      }
+  
+      .desc {
+        margin: $padding-big;
+      }
     }
   }
 }
