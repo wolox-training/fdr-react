@@ -1,15 +1,14 @@
 .box {    
   align-items: center;
   background-color: $green;
-  border: 2px;
   border-radius: 5px;
-  box-shadow: -10px -10px 0 0 white, -10px -10px 0 3px $green;
+  box-shadow: -10px -10px 0 0 $white, -10px -10px 0 3px $green;
   display: flex;
   flex-direction: column;
   padding: $padding-medium;
   width: 200px;
 
-  .img {
+  .logo {
     width: $tech-logo-size;
   }
 
@@ -21,15 +20,16 @@
     text-align: center;
   
     .name {
-      margin: $padding-small;
+      margin: $margin-small;
     }
 
     .release {
-      margin: $padding-small;
+      font-weight: bold; 
+      margin: $margin-small;
     }
 
     .desc {
-      margin: $padding-big;
+      margin: $margin-big;
     }
   }
 }
