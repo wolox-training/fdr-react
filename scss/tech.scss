@@ -2,7 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  padding: 50px;
+  padding: 30px;
   width: 100%;
 
   .box {    
@@ -13,6 +13,8 @@
     box-shadow: -10px -10px 0 0 white, -10px -10px 0 3px $green;
     display: inline-flex;
     flex-direction: column;
+    justify-content: center;
+    margin-bottom: 40px;
     padding: $padding-medium;
     width: 200px;
   }
