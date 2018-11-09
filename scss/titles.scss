@@ -4,16 +4,9 @@
   background-repeat: no-repeat;
   background-size: $title-decoration-width $title-decoration-height;
   display: flex;
+  font-size: $text-big;
   height: $title-decoration-height;
   margin: 10px;
-  position: relative;
-  width: 100%;  
-}
-
-.title-name {
-  bottom: 28px;
-  color: $black;
-  font-size: $text-big;
-  left: 50px;
-  position: absolute;
+  padding-left: 50px;
+  width: 100%; 
 }
