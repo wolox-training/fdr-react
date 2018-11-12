@@ -13,8 +13,9 @@
     flex-direction: column;
     padding: $padding-medium;
     margin: $margin-big;
-    width: 200px; 
-    transition: box-shadow 0.2s ease; 
+    text-align: center;
+    transition: box-shadow 0.2s ease;
+    width: 200px;  
     
     &:hover {
       box-shadow: 10px 10px 0 0 $white, 10px 10px 0 1px $green;
@@ -22,29 +23,21 @@
   
     .logo {      
       height: $tech-logo-size;
-      max-width:80%;
+      max-width: 80%;
     }
-  
-    .text {
-      align-items: center;
-      display: flex;
-      flex-direction: column;
-      font-size: $text-medium;
-      text-align: center;
     
-      .name {
-        margin: $margin-small;
-      }
-
-      .release {
-        font-weight: bold; 
-        margin: $margin-small;
-      }
-
-      .desc {
-        margin: $margin-big;
-      }
+    .name {      
+      margin: $margin-small;
     }
+
+    .release {
+      font-weight: bold; 
+      margin: $margin-small;
+    }
+
+    .desc {
+      margin: $margin-big;
+    }  
   }
 
   
