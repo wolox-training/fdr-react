@@ -1,4 +1,4 @@
-.tech {
+.tech-container {
   display: flex;
   flex-wrap: wrap;
   padding: 30px;
@@ -15,9 +15,9 @@
     margin: $margin-big;
     width: 200px;
   
-    .logo {
-      width: $tech-logo-size;
+    .logo {      
       height: $tech-logo-size;
+      max-width:100%;
     }
   
     .text {
