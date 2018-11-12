@@ -1,18 +1,18 @@
 .navbar {
     align-items: center;
     background: $white;
-    background-image: url('../img/wolox_logo.svg');
-    background-repeat: no-repeat;
-    background-position: 10px;
-    background-size: 190px $nav-logo-height;
-    box-shadow: 0px 3px 10px -5px $black;
+    box-shadow: 0 3px 10px -5px $black;
     display: flex;
-    justify-content: flex-end;
     position: fixed;
     height: $nav-height;
+    justify-content: space-between;
     padding: $padding-big;
     top: 0;
     width: 100%;
+
+    .logo {
+        height: $nav-logo-height;
+    }
 
     .text {
         font-size: $text-big;
