@@ -1,0 +1,12 @@
+.title {
+  align-items: center;
+  background-image: url('../img/triangle.svg');
+  background-repeat: no-repeat;
+  background-size: $title-decoration-width $title-decoration-height;
+  display: flex;
+  font-size: $text-big;
+  height: $title-decoration-height;
+  margin: 10px;
+  padding-left: 50px;
+  width: 100%; 
+}
