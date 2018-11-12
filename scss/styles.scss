@@ -17,5 +17,6 @@ $margin-big: 15px;
 
 body {
     font-family: 'Roboto', sans-serif;
-    padding-top: 90px;
+    margin-top: $nav-height;
+    padding-top: $padding-small;
 }
