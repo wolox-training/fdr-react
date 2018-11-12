@@ -20,5 +20,6 @@ $text-small: 12px;
 
 body {
     font-family: 'Roboto', sans-serif;
-    padding-top: $nav-height;
+    margin-top: $nav-height;
+    padding-top: $padding-small;
 }
