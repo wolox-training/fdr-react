@@ -1,8 +1,23 @@
-.item1 { grid-area: left; }
-.item2 { grid-area: main1; }
-.item3 { grid-area: main2; }
-.item4 { grid-area: main3; }
-.item5 { grid-area: main4; }
+.item1 { 
+  border-right: solid $green 3px;
+  grid-area: left; 
+}
+
+.item2 { 
+  grid-area: main1; 
+}
+
+.item3 { 
+  grid-area: main2; 
+}
+
+.item4 { 
+  grid-area: main3; 
+}
+
+.item5 { 
+  grid-area: main4; 
+}
 
 .tech-grid-container {
   display: grid;
@@ -12,10 +27,6 @@
   grid-template-columns: repeat(3, 33%);
   grid-template-rows: repeat(2, 50%);
   margin: 0 100px 100px;
-
-  .first {
-    border-right: solid $green 3px;
-  }
 
   .box {
     align-items: center;
