@@ -4,10 +4,6 @@
 .item4 { grid-area: main3; }
 .item5 { grid-area: main4; }
 
-.border-box {
-  border-right: solid $green 3px;
-}
-
 .tech-grid-container {
   display: grid;
   grid-template-areas: 
@@ -17,6 +13,10 @@
   grid-template-rows: repeat(2, 50%);
   margin: 0 100px 100px;
 
+  .first {
+    border-right: solid $green 3px;
+  }
+
   .box {
     align-items: center;
     display: flex;
@@ -25,7 +25,6 @@
     padding: $padding-medium;
     margin: $margin-big;
     text-align: center;
-    width: 80%;
   
     .logo {      
       height: $tech-logo-size;
