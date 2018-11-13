@@ -25,7 +25,6 @@
     padding: $padding-medium;
     margin: $margin-big;
     text-align: center;
-    width: 80%;
   
     .logo {      
       height: $tech-logo-size;
@@ -43,6 +42,32 @@
 
     .desc {
       margin: $margin-big;
+    }
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .border-box {
+    border-right: none;
+  }
+
+  .tech-grid-container {
+    grid-template-areas: 
+    'left' 
+    'main1'
+    'main2'
+    'main3' 
+    'main4';
+    grid-template-columns: 100%;
+    grid-template-rows: repeat(5, auto);
+    margin: 0 60px 100px;
+    
+    .box {
+      border-bottom: solid $green 3px;
+    }
+
+    .last {
+      border-bottom: none;
     }
   }
 }

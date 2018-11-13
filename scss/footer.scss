@@ -6,7 +6,7 @@ footer {
   padding: $padding-large;
   width: 100%;
 
-  .text {
+  .changers-text {
     color: $white;
     font-size: 23px;
     padding: $padding-small 0;
@@ -22,4 +22,22 @@ footer {
     color: $white;
     font-size: 10px;
   }
+}
+
+@media only screen and (max-width: 1024px) {
+  footer {
+    .changers-text {
+      font-size: 20px;
+      padding-top: 30px;
+    }
+
+    .logo {
+      width: 300px;
+    }
+  
+    .copyright {
+      align-self: center;
+      padding: 30px 0;
+    }
+  }  
 }
