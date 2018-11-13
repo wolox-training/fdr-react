@@ -69,16 +69,12 @@
     grid-template-rows: repeat(5, auto);
     margin: 0 60px 100px;
 
-    .first {
+    .item1 {
       border-right: none;
     }
     
-    .box {
+    .box:not(:last-child) {
       border-bottom: solid $green 3px;
-    }
-
-    .last {
-      border-bottom: none;
     }
   }
 }
