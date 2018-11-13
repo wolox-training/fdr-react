@@ -47,10 +47,6 @@
 }
 
 @media only screen and (max-width: 1024px) {
-  .border-box {
-    border-right: none;
-  }
-
   .tech-grid-container {
     grid-template-areas: 
     'left' 
@@ -61,6 +57,10 @@
     grid-template-columns: 100%;
     grid-template-rows: repeat(5, auto);
     margin: 0 60px 100px;
+
+    .first {
+      border-right: none;
+    }
     
     .box {
       border-bottom: solid $green 3px;
