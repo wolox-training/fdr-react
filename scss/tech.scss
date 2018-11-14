@@ -1,45 +1,9 @@
 .tech-grid-container {
   display: grid;
-  grid-template-columns: repeat(3, fr);
-  grid-template-rows: repeat(2, fr);
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
   margin: 0 100px 100px;
-
-  .item1 { 
-    border-right: solid $green 3px;
-    grid-column-start: 1;
-    grid-column-end: 2; 
-    grid-row-start: 1;
-    grid-row-end: 3;
-  }
   
-  .item2 { 
-    grid-column-start: 2;
-    grid-column-end: 3; 
-    grid-row-start: 1;
-    grid-row-end: 2;
-  }
-  
-  .item3 { 
-    grid-column-start: 3;
-    grid-column-end: 4; 
-    grid-row-start: 1;
-    grid-row-end: 2; 
-  }
-  
-  .item4 { 
-    grid-column-start: 2;
-    grid-column-end: 3; 
-    grid-row-start: 2;
-    grid-row-end: 3; 
-  }
-  
-  .item5 { 
-    grid-column-start: 3;
-    grid-column-end: 4; 
-    grid-row-start: 2;
-    grid-row-end: 3; 
-  }
-
   .box {
     align-items: center;
     display: flex;
@@ -48,6 +12,11 @@
     padding: $padding-medium;
     margin: $margin-big;
     text-align: center;
+  
+    &:first-child { 
+      border-right: solid $green 3px;
+      grid-row: 1 / span 2;
+    }
   
     .logo {      
       height: $tech-logo-size;
@@ -71,48 +40,20 @@
 
 @media only screen and (max-width: 1024px) {
   .tech-grid-container {
-    grid-template-columns: 1fr;
+    border-right: none;
+    grid-template-columns: auto;
     grid-template-rows: repeat(5, auto);
     margin: 0 60px 100px;
 
-    .item1 {
-      border-right: none;
-      grid-column-start: 1;
-      grid-column-end: 1;
-      grid-row-start: 1;
-      grid-row-end: 2;
-    }
+    .box {
+      &:first-child {
+        border-right: none;
+        grid-row: 1;
+      }
 
-    .item2 {
-      grid-column-start: 1;
-      grid-column-end: 1;
-      grid-row-start: 2;
-      grid-row-end: 3;
-    }
-
-    .item3 {
-      grid-column-start: 1;
-      grid-column-end: 1;
-      grid-row-start: 3;
-      grid-row-end: 4;
-    }
-
-    .item4 {
-      grid-column-start: 1;
-      grid-column-end: 1;
-      grid-row-start: 4;
-      grid-row-end: 5;
-    }
-
-    .item5 {
-      grid-column-start: 1;
-      grid-column-end: 1;
-      grid-row-start: 5;
-      grid-row-end: 6;
-    }
-    
-    .box:not(:last-child) {
-      border-bottom: solid $green 3px;
+      &:not(:last-child) { 
+        border-bottom: solid $green 3px;
+      }
     }
   }
 }
