@@ -1,0 +1,25 @@
+footer {
+  align-items: center;
+  background-color: $blue;
+  display: flex;
+  flex-direction: column;
+  padding: $padding-large;
+  width: 100%;
+
+  .text {
+    color: $white;
+    font-size: 23px;
+    padding: $padding-small 0;
+    text-transform: uppercase;
+  }
+
+  .logo {
+    padding: $padding-medium 0;
+  }
+
+  .copyright {
+    align-self: flex-end;
+    color: $white;
+    font-size: 10px;
+  }
+}
