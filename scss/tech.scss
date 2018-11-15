@@ -14,7 +14,12 @@
     padding: $padding-medium;
     margin: $margin-big;
     text-align: center;
-    width: 200px;
+    transition: box-shadow 0.2s ease;
+    width: 200px;  
+    
+    &:hover {
+      box-shadow: 10px 10px 0 0 $white, 10px 10px 0 1px $green;
+    }
   
     .logo {      
       height: $tech-logo-size;
