@@ -1,25 +1,27 @@
-.box {    
-  align-items: center;
-  background-color: $green;
-  border-radius: 5px;
-  box-shadow: -10px -10px 0 0 $white, -10px -10px 0 3px $green;
+.tech-container {
   display: flex;
-  flex-direction: column;
-  padding: $padding-medium;
-  width: 200px;
+  flex-wrap: wrap;
+  padding: 30px;
+  width: 100%;
 
-  .logo {
-    width: $tech-logo-size;
-  }
-
-  .text {
+  .box {
     align-items: center;
+    background-color: $green;
+    border-radius: 5px;
+    box-shadow: -10px -10px 0 0 $white, -10px -10px 0 1px $green;
     display: flex;
     flex-direction: column;
-    font-size: $text-medium;
+    padding: $padding-medium;
+    margin: $margin-big;
     text-align: center;
+    width: 200px;
   
-    .name {
+    .logo {      
+      height: $tech-logo-size;
+      max-width: 150px;
+    }
+    
+    .name {      
       margin: $margin-small;
     }
 
