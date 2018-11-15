@@ -37,3 +37,22 @@
     }
   }
 }
+
+@media only screen and (max-width: 1024px) {
+  .tech-grid-container {
+    border-right: none;
+    grid-template-columns: auto;
+    margin: 0 60px 100px;
+
+    .box {
+      &:first-child {
+        border-right: none;
+        grid-row: 1;
+      }
+
+      &:not(:last-child) { 
+        border-bottom: solid $green 3px;
+      }
+    }
+  }
+}
