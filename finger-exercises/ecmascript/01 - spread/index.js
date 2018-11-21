@@ -17,8 +17,7 @@ export function copy(objExample) {
   return { ...objExample };
 }
 
-export function reverseMerge(objExample) {
-  const [arr1, arr2] = objExample;
+export function reverseMerge(arr1, arr2) {
   return [...arr2, ...arr1];
 }
 
