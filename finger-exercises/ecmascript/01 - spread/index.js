@@ -1,13 +1,16 @@
 import { isArray } from './utils';
 
-export function min(objExample) {
-  if (arguments.length >= 1) {
-    if (isArray(objExample)) {
-      return Math.min(...objExample);
-    }
-    return Math.min(objExample);
+export function min(...objExample) {
+  if (objExample.length === 0) {
+    return undefined;
   }
-  return undefined;
+
+  const item = objExample[0];
+  if (isArray(item)) {
+    return Math.min(...item);
+  }
+
+  return Math.min(...objExample);
 }
 
 export function copy(objExample) {
@@ -17,7 +20,8 @@ export function copy(objExample) {
   return { ...objExample };
 }
 
-export function reverseMerge(arr1, arr2) {
+export function reverseMerge(...objectExample) {
+  const [arr1, arr2] = objectExample;
   return [...arr2, ...arr1];
 }
 
