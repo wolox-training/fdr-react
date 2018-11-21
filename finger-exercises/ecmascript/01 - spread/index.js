@@ -5,7 +5,7 @@ export function min(...objExample) {
     return undefined;
   }
 
-  const item = objExample[0];
+  const [item] = [...objExample];
   if (isArray(item)) {
     return Math.min(...item);
   }
