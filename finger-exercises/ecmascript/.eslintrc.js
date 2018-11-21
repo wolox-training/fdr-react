@@ -3,9 +3,17 @@ module.exports = {
     "env": {
       "jest": true
     },
+    "parserOptions": {
+      "ecmaVersion": 8,
+      "ecmaFeatures": {        
+          "experimentalObjectRestSpread": true,
+          "jsx": true
+      },
+      "sourceType": "module"
+  },
     "rules": {
       "comma-dangle": ["error", "never"],
-      "no-console": ["error", {"allow": ["warn", "error"]}],
+      "no-console": 0,
       "arrow-parens": ["off", { "requireForBlockBody": false }]
     }
 };
