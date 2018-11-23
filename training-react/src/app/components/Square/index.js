@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import styles from './styles.scss';
 
@@ -9,5 +10,10 @@ function Square(props) {
     </button>
   );
 }
+
+Square.propTypes = {
+  onClick: PropTypes.func,
+  value: PropTypes.number
+};
 
 export default Square;
