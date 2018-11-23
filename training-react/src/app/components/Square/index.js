@@ -13,7 +13,7 @@ function Square(props) {
 
 Square.propTypes = {
   onClick: PropTypes.func,
-  value: PropTypes.number
+  value: PropTypes.string
 };
 
 export default Square;
