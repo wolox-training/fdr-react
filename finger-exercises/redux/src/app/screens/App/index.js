@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import store from '@redux/store';
 import Navbar from '@components/Navbar';
 import Footer from '@components/Footer';
+import Button from '@components/Button';
 
 import Book from './components/Book';
 import Search from './components/Search';
@@ -24,6 +25,10 @@ class App extends Component {
 
   // TODO to implement the dispatch
   onSearch = value => {};
+
+  getBooks = () => {
+    console.log('getBooks');
+  };
 
   // TODO to implement the dispatch
   addToCart = item => {};
@@ -58,6 +63,7 @@ class App extends Component {
         <Navbar />
         <div className={styles.container}>
           <Search onSearch={this.onSearch} />
+          <Button text={'Search'} onClick={this.getBooks} />
           {this.state.books.length ? (
             this.state.books.map(this.renderBooks)
           ) : (
