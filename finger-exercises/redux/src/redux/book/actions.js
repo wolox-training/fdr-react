@@ -14,7 +14,7 @@ export const actions = {
   SEARCH_ITEM: '@@BOOK/SEARCH_ITEM'
 };
 
-const actionsCreators = {
+const actionsCreator = {
   getBooks: () => ({
     type: actions.GET_BOOKS,
     payload: DATA
@@ -37,4 +37,4 @@ const actionsCreators = {
   })
 };
 
-export default actionsCreators;
+export default actionsCreator;

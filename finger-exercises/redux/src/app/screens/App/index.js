@@ -1,8 +1,11 @@
 import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
 import store from '@redux/store';
+import PropTypes from 'prop-types';
 import Navbar from '@components/Navbar';
 import Footer from '@components/Footer';
 import Button from '@components/Button';
+import bookActions from '@redux/book/actions';
 
 import Book from './components/Book';
 import Search from './components/Search';
@@ -24,10 +27,8 @@ class App extends Component {
   }
 
   // TODO to implement the dispatch
-  onSearch = value => {};
-
-  getBooks = () => {
-    console.log('getBooks');
+  onSearch = value => {
+    this.props.getBooks();
   };
 
   // TODO to implement the dispatch
@@ -63,7 +64,7 @@ class App extends Component {
         <Navbar />
         <div className={styles.container}>
           <Search onSearch={this.onSearch} />
-          <Button text={'Search'} onClick={this.getBooks} />
+          <Button text={'Search'} onClick={this.onSearch} />
           {this.state.books.length ? (
             this.state.books.map(this.renderBooks)
           ) : (
@@ -81,4 +82,20 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  books: state.books,
+  bookSelected: state.bookSelected
+});
+
+const mapDispatchToProps = dispatch => ({
+  getBooks: () => dispatch(bookActions.getBooks())
+});
+
+App.propTypes = {
+  getBooks: PropTypes.func
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
