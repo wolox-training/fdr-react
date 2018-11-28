@@ -25,14 +25,14 @@ class App extends Component {
     // TODO to implement the dispatch
   }
 
-  // TODO to implement the dispatch
   onSearch = value => {
     this.props.getBooks();
     this.props.searchBook(value);
   };
 
-  // TODO to implement the dispatch
-  addToCart = item => {};
+  addToCart = item => {
+    this.props.addToCart(item);
+  };
 
   // TODO to implement the dispatch
   addItem = itemId => {};
@@ -88,12 +88,14 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getBooks: () => dispatch(bookActions.getBooks()),
-  searchBook: value => dispatch(bookActions.searchBook(value))
+  searchBook: value => dispatch(bookActions.searchBook(value)),
+  addToCart: item => dispatch(bookActions.addToCart(item))
 });
 
 App.propTypes = {
   getBooks: PropTypes.func,
-  searchBook: PropTypes.func
+  searchBook: PropTypes.func,
+  addToCart: PropTypes.func
 };
 
 export default connect(

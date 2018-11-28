@@ -10,8 +10,8 @@ function reducer(state = initialState, action) {
   switch (action.type) {
     case actions.GET_BOOKS:
       return { ...state, books: action.payload };
-    case actions.ADD_TO_CART: // TODO to implement the logic
-      return { ...state };
+    case actions.ADD_TO_CART:
+      return { ...state, bookSelected: [...state.bookSelected, action.payload] };
     case actions.ADD_ITEM: // TODO to implement the logic
       return { ...state };
     case actions.REMOVE_ITEM: // TODO to implement the logic
