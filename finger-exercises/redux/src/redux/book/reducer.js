@@ -8,7 +8,7 @@ const initialState = {
 
 function reducer(state = initialState, action) {
   switch (action.type) {
-    case actions.GET_BOOKS: // TODO to implement the logic
+    case actions.GET_BOOKS:
       return { ...state, books: action.payload };
     case actions.ADD_TO_CART: // TODO to implement the logic
       return { ...state };
@@ -16,8 +16,11 @@ function reducer(state = initialState, action) {
       return { ...state };
     case actions.REMOVE_ITEM: // TODO to implement the logic
       return { ...state };
-    case actions.SEARCH_ITEM: // TODO to implement the logic
-      return { ...state };
+    case actions.SEARCH_ITEM:
+      const result = state.books.filter(item => 
+        item.name.toLowerCase().includes(action.payload)       
+      );   
+      return { ...state, books: result };
     default:
       return state;
   }

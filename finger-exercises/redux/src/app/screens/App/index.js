@@ -4,7 +4,6 @@ import store from '@redux/store';
 import PropTypes from 'prop-types';
 import Navbar from '@components/Navbar';
 import Footer from '@components/Footer';
-import Button from '@components/Button';
 import bookActions from '@redux/book/actions';
 
 import Book from './components/Book';
@@ -29,6 +28,7 @@ class App extends Component {
   // TODO to implement the dispatch
   onSearch = value => {
     this.props.getBooks();
+    this.props.searchBook(value);
   };
 
   // TODO to implement the dispatch
@@ -64,7 +64,6 @@ class App extends Component {
         <Navbar />
         <div className={styles.container}>
           <Search onSearch={this.onSearch} />
-          <Button text={'Search'} onClick={this.onSearch} />
           {this.state.books.length ? (
             this.state.books.map(this.renderBooks)
           ) : (
@@ -88,11 +87,13 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getBooks: () => dispatch(bookActions.getBooks())
+  getBooks: () => dispatch(bookActions.getBooks()),
+  searchBook: value => dispatch(bookActions.searchBook(value))
 });
 
 App.propTypes = {
-  getBooks: PropTypes.func
+  getBooks: PropTypes.func,
+  searchBook: PropTypes.func
 };
 
 export default connect(
