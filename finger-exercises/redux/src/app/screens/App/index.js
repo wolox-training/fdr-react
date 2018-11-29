@@ -38,8 +38,9 @@ class App extends Component {
     this.props.addItem(itemId);
   };
 
-  // TODO to implement the dispatch
-  removeItem = itemId => {};
+  removeItem = itemId => {
+    this.props.removeItem(itemId);
+  };
 
   CONFIGURATION_BUTTON = {
     add: {
@@ -91,14 +92,16 @@ const mapDispatchToProps = dispatch => ({
   getBooks: () => dispatch(bookActions.getBooks()),
   searchBook: value => dispatch(bookActions.searchBook(value)),
   addToCart: item => dispatch(bookActions.addToCart(item)),
-  addItem: itemId => dispatch(bookActions.addItem(itemId))
+  addItem: itemId => dispatch(bookActions.addItem(itemId)),
+  removeItem: itemId => dispatch(bookActions.removeItem(itemId))
 });
 
 App.propTypes = {
   getBooks: PropTypes.func,
   searchBook: PropTypes.func,
   addToCart: PropTypes.func,
-  addItem: PropTypes.func
+  addItem: PropTypes.func,
+  removeItem: PropTypes.func
 };
 
 export default connect(

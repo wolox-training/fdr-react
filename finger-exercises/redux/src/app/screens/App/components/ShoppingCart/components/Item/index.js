@@ -7,7 +7,6 @@ import styles from './styles.scss';
 
 class Item extends Component {
   addItem = () => {
-    console.log(this.props);
     const { item, addItem } = this.props;
     addItem(item.id);
   };
