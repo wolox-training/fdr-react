@@ -34,8 +34,9 @@ class App extends Component {
     this.props.addToCart(item);
   };
 
-  // TODO to implement the dispatch
-  addItem = itemId => {};
+  addItem = itemId => {
+    this.props.addItem(itemId);
+  };
 
   // TODO to implement the dispatch
   removeItem = itemId => {};
@@ -89,13 +90,15 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   getBooks: () => dispatch(bookActions.getBooks()),
   searchBook: value => dispatch(bookActions.searchBook(value)),
-  addToCart: item => dispatch(bookActions.addToCart(item))
+  addToCart: item => dispatch(bookActions.addToCart(item)),
+  addItem: itemId => dispatch(bookActions.addItem(itemId))
 });
 
 App.propTypes = {
   getBooks: PropTypes.func,
   searchBook: PropTypes.func,
-  addToCart: PropTypes.func
+  addToCart: PropTypes.func,
+  addItem: PropTypes.func
 };
 
 export default connect(
