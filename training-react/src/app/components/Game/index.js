@@ -2,87 +2,68 @@ import React, { Component } from 'react';
 
 import Board from '../Board';
 
+import calculateWinner from './utils';
 import styles from './styles.scss';
 
 class Game extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      history: [{
-        squares: Array(9).fill(null),
-      }],
-      xIsNext: true,
-      stepNumber: 0
-    };
-  }
+  state = {
+    history: [{
+      squares: Array(9).fill(null),
+    }],
+    xIsNext: true,
+    stepNumber: 0,
+    isWinner: false
+  };
+
+  getStatus = winner => {
+    let status;
+    if (winner) {
+      status = `Winner: ${this.state.xIsNext ? 'O' : 'X'}`;
+    } else {
+      status = `Next player: ${this.state.xIsNext ? 'X' : 'O'}`;
+    }
+    return status;
+  };
 
   handleClick = i => {
-    const history = this.state.history.slice(0, this.state.stepNumber + 1);
-    const current = history[history.length - 1];
-    const squares = current.squares.slice();
-    if (this.calculateWinner(squares) || squares[i]) {
-      return;
+    if (!this.props.isWinner) {
+      const history = this.state.history.slice(0, this.state.stepNumber + 1);
+      const current = history[history.length - 1];
+      const squares = [...current.squares];
+      if (calculateWinner(squares) || squares[i]) {
+        this.setState({
+          isWinner: true
+        });
+        return;
+      }
+      squares[i] = this.state.xIsNext ? 'X' : 'O';
+      this.setState((prevState, currentProps) => ({
+        history: [...history, { squares }],
+        stepNumber: history.length,
+        xIsNext: !prevState.xIsNext
+      }));
     }
-    squares[i] = this.state.xIsNext ? 'X' : 'O';
-    this.setState({
-      history: history.concat([{
-        squares
-      }]),
-      stepNumber: history.length,
-      xIsNext: !this.state.xIsNext,
-    });
   };
 
   jumpTo = step => {
     this.setState({
       stepNumber: step,
-      xIsNext: (step % 2) === 0,
+      xIsNext: step % 2 === 0
     });
-  };
-
-  calculateWinner = squares => {
-    const lines = [
-      [0, 1, 2],
-      [3, 4, 5],
-      [6, 7, 8],
-      [0, 3, 6],
-      [1, 4, 7],
-      [2, 5, 8],
-      [0, 4, 8],
-      [2, 4, 6],
-    ];
-
-    for (let i = 0; i < lines.length; i++) {
-      const [a, b, c] = lines[i];
-      if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-        return squares[a];
-      }
-    }
-    return null;
   };
 
   render() {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
-    const winner = this.calculateWinner(current.squares);
 
     const moves = history.map((step, move) => {
-      const desc = move ?
-        'Go to move #' + move :
-        'Go to game start';
+      const desc = `Go to ${move ? `move #${move}` : 'game start'}`;
       return (
         <li key={step}>
           <button onClick={() => this.jumpTo(move)}>{desc}</button>
         </li>
       );
     });
-
-    let status;
-    if (winner) {
-      status = 'Winner: ' + winner;
-    } else {
-      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
-    }
 
     return (
       <div className={styles.game}>
@@ -93,7 +74,7 @@ class Game extends Component {
         />
         </div>
         <div className={styles.info}>
-          <div>{status}</div>
+          <div>{this.getStatus(this.props.isWinner)}</div>
           <ol>{moves}</ol>
         </div>
       </div>

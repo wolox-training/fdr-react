@@ -1,9 +1,5 @@
 {   
     "extends": "wolox",
     "rules": {
-        "no-console": 0,
-        "prettier/prettier": 0,
-        "prefer-template": 0,
-        "no-plusplus": 0
     }
 }
