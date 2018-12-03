@@ -13,20 +13,20 @@ import styles from './styles.scss';
 
 class App extends Component {
   state = {
-    books: [],
-    bookSelected: []
+    books: this.props.books,
+    bookSelected: this.props.bookSelected
   };
 
   componentDidMount() {
     store.subscribe(() => {
-      const { books, bookSelected } = store.getState();
-      this.setState({ books, bookSelected });
+      const { books } = store.getState();
+      this.setState({ books: books.books, bookSelected: books.bookSelected });
     });
     // TODO to implement the dispatch
+    this.props.getBooks();
   }
 
   onSearch = value => {
-    this.props.getBooks();
     this.props.searchBook(value);
   };
 
@@ -84,8 +84,8 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  books: state.books,
-  bookSelected: state.bookSelected
+  books: state.books.books,
+  bookSelected: state.books.bookSelected
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -102,6 +102,11 @@ App.propTypes = {
   addToCart: PropTypes.func,
   addItem: PropTypes.func,
   removeItem: PropTypes.func
+};
+
+App.defaultProps = {
+  books: [],
+  bookSelected: []
 };
 
 export default connect(

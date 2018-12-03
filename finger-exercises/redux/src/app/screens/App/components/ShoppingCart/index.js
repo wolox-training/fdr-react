@@ -1,20 +1,40 @@
-import React, { PureComponent, Fragment } from 'react';
+import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
+import store from '@redux/store';
 import { arrayOf, func } from 'prop-types';
 import { bookSelectedPropType } from '@constants/propTypes';
+import shopingCartActions from '@redux/shoppingCart/actions';
 import Button from '@components/Button';
 
 import Item from './components/Item';
 import styles from './styles.scss';
 
-class ShoppingCart extends PureComponent {
+class ShoppingCart extends Component {
   state = {
-    open: false
+    open: this.props.open
+  };
+
+  componentDidMount() {
+    store.subscribe(() => {
+      const { shoppingCart } = store.getState();
+      this.setState({ open: shoppingCart.open });
+    });
+  }
+
+  getOpen = () => {
+    this.props.getOpen();
+  };
+
+  getOpen = () => {
+    this.props.getClose();
   };
 
   toggleContent = () => {
-    this.setState(prevState => ({
-      open: !prevState.open
-    }));
+    if (this.props.open) {
+      this.props.getClose();
+    } else {
+      this.props.getOpen();
+    }
   };
 
   total = (accumulator, currentValue) => accumulator + currentValue.quantity;
@@ -41,10 +61,28 @@ class ShoppingCart extends PureComponent {
   }
 }
 
+const mapStateToProps = state => ({
+  open: state.shoppingCart.open
+});
+
+const mapDispatchToProps = dispatch => ({
+  getOpen: () => dispatch(shopingCartActions.getOpen()),
+  getClose: () => dispatch(shopingCartActions.getClose())
+});
+
 ShoppingCart.propTypes = {
   data: arrayOf(bookSelectedPropType).isRequired,
   addItem: func.isRequired,
-  removeItem: func.isRequired
+  removeItem: func.isRequired,
+  getOpen: func,
+  getClose: func
 };
 
-export default ShoppingCart;
+ShoppingCart.defaultProps = {
+  open: false
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ShoppingCart);
