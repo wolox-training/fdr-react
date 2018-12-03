@@ -5,8 +5,7 @@ import Square from '../Square';
 
 import styles from './styles.scss';
 
-class Board extends Component {  
-
+class Board extends Component {
   renderSquare = i =>
     <Square
       value={this.props.squares[i]}
@@ -39,7 +38,7 @@ class Board extends Component {
 
 Board.propTypes = {
   squares: PropTypes.arrayOf(PropTypes.string),
-  onClick: PropTypes.func
-}
+  onClick: PropTypes.func.isRequired
+};
 
 export default Board;
