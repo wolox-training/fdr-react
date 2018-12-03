@@ -27,6 +27,7 @@ class App extends Component {
   }
 
   onSearch = value => {
+    this.props.getBooks();
     this.props.searchBook(value);
   };
 
