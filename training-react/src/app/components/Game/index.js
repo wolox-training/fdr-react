@@ -12,13 +12,13 @@ class Game extends Component {
     }],
     xIsNext: true,
     stepNumber: 0,
-    isWinner: false
+    isWinner: null
   };
 
   getStatus = winner => {
     let status;
     if (winner) {
-      status = `Winner: ${this.state.xIsNext ? 'O' : 'X'}`;
+      status = `Winner: ${winner}`;
     } else {
       status = `Next player: ${this.state.xIsNext ? 'X' : 'O'}`;
     }
@@ -26,29 +26,27 @@ class Game extends Component {
   };
 
   handleClick = i => {
-    if (!this.props.isWinner) {
+    if (!this.state.isWinner) {
       const history = this.state.history.slice(0, this.state.stepNumber + 1);
       const current = history[history.length - 1];
       const squares = [...current.squares];
-      if (calculateWinner(squares) || squares[i]) {
-        this.setState({
-          isWinner: true
-        });
-        return;
+      if (!squares[i]) {
+        squares[i] = this.state.xIsNext ? 'X' : 'O';
+        this.setState(prevState => ({
+          history: [...history, { squares }],
+          xIsNext: !prevState.xIsNext,
+          stepNumber: history.length,
+          isWinner: calculateWinner(squares)
+        }));
       }
-      squares[i] = this.state.xIsNext ? 'X' : 'O';
-      this.setState((prevState, currentProps) => ({
-        history: [...history, { squares }],
-        stepNumber: history.length,
-        xIsNext: !prevState.xIsNext
-      }));
     }
   };
 
   jumpTo = step => {
     this.setState({
       stepNumber: step,
-      xIsNext: step % 2 === 0
+      xIsNext: step % 2 === 0,
+      isWinner: null
     });
   };
 
@@ -68,13 +66,10 @@ class Game extends Component {
     return (
       <div className={styles.game}>
         <div className={styles.board}>
-        <Board
-          squares={current.squares}
-          onClick={(i) => this.handleClick(i)}
-        />
+          <Board squares={current.squares} onClick={this.handleClick} />
         </div>
         <div className={styles.info}>
-          <div>{this.getStatus(this.props.isWinner)}</div>
+          <div>{this.getStatus(this.state.isWinner)}</div>
           <ol>{moves}</ol>
         </div>
       </div>
