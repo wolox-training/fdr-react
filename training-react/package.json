@@ -5,6 +5,9 @@
   "dependencies": {
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
+    "react-redux": "^5.1.1",
+    "redux": "^4.0.1",
+    "redux-form": "^7.4.2",
     "wolox-react-scripts": "1.2.1"
   },
   "scripts": {

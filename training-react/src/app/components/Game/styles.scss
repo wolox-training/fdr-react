@@ -2,7 +2,18 @@
   display: flex;
   flex-direction: row;
 
-  .info {
-    margin-left: 20px;
+  .board {
+    align-items: center; 
+    display: flex;
+    flex-direction: column;
+    margin: 50px;
   }
+
+  .hidden {
+    display: none;
+  }
+
+  .info {
+    margin: 20px;
+  }  
 }

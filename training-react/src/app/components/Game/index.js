@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
 
 import Board from '../Board';
+import RegisterForm from '../RegisterForm';
 
 import calculateWinner from './utils';
 import styles from './styles.scss';
 
 class Game extends Component {
   state = {
+    /* eslint-disable prettier/prettier */
     history: [{
       squares: Array(9).fill(null),
     }],
     xIsNext: true,
     stepNumber: 0,
-    isWinner: null
+    isWinner: null,
+    showRegister: false
   };
 
   getStatus = winner => {
@@ -50,6 +53,17 @@ class Game extends Component {
     });
   };
 
+  register = () => {
+    this.setState(prevState => ({
+      showRegister: !prevState.showRegister
+    }));
+  };
+
+  submit = values => {
+    this.setState({ showRegister: false });
+    window.alert(JSON.stringify(values, null, 4)); // eslint-disable-line no-alert
+  };
+
   render() {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
@@ -67,10 +81,17 @@ class Game extends Component {
       <div className={styles.game}>
         <div className={styles.board}>
           <Board squares={current.squares} onClick={this.handleClick} />
+          <div className={styles.info}>
+            <div>{this.getStatus(this.state.isWinner)}</div>
+            <ol>{moves}</ol>
+          </div>
         </div>
-        <div className={styles.info}>
-          <div>{this.getStatus(this.state.isWinner)}</div>
-          <ol>{moves}</ol>
+        <div className={styles.registerForm}>
+          <button onClick={this.register}>Register</button>
+          <button>Login</button>
+          <div className={this.state.showRegister ? '' : styles.hidden}>
+            <RegisterForm onSubmit={this.submit} />
+          </div>
         </div>
       </div>
     );
