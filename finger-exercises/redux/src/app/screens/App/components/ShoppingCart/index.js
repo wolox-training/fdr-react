@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import store from '@redux/store';
-import { arrayOf, func } from 'prop-types';
 import { bookSelectedPropType } from '@constants/propTypes';
 import shopingCartActions from '@redux/shoppingCart/actions';
 import Button from '@components/Button';
@@ -71,11 +71,12 @@ const mapDispatchToProps = dispatch => ({
 });
 
 ShoppingCart.propTypes = {
-  data: arrayOf(bookSelectedPropType).isRequired,
-  addItem: func.isRequired,
-  removeItem: func.isRequired,
-  getOpen: func,
-  getClose: func
+  data: PropTypes.arrayOf(bookSelectedPropType).isRequired,
+  addItem: PropTypes.func.isRequired,
+  removeItem: PropTypes.func.isRequired,
+  getOpen: PropTypes.func,
+  getClose: PropTypes.func,
+  open: PropTypes.bool
 };
 
 ShoppingCart.defaultProps = {

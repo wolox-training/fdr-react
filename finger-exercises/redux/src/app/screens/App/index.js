@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import store from '@redux/store';
 import PropTypes from 'prop-types';
+import { bookSelectedPropType, booksPropType } from '@constants/propTypes';
 import Navbar from '@components/Navbar';
 import Footer from '@components/Footer';
 import bookActions from '@redux/book/actions';
@@ -12,17 +12,7 @@ import ShoppingCart from './components/ShoppingCart';
 import styles from './styles.scss';
 
 class App extends Component {
-  state = {
-    books: this.props.books,
-    bookSelected: this.props.bookSelected
-  };
-
   componentDidMount() {
-    store.subscribe(() => {
-      const { books } = store.getState();
-      this.setState({ books: books.books, bookSelected: books.bookSelected });
-    });
-    // TODO to implement the dispatch
     this.props.getBooks();
   }
 
@@ -56,7 +46,7 @@ class App extends Component {
   };
 
   renderBooks = item => {
-    const showButton = !this.state.bookSelected.some(el => el.id === item.id);
+    const showButton = !this.props.bookSelected.some(el => el.id === item.id);
     const configButton = showButton ? this.CONFIGURATION_BUTTON.add : this.CONFIGURATION_BUTTON.remove;
     return <Book key={item.id} data={item} configButton={configButton} />;
   };
@@ -67,16 +57,16 @@ class App extends Component {
         <Navbar />
         <div className={styles.container}>
           <Search onSearch={this.onSearch} />
-          {this.state.books.length ? (
-            this.state.books.map(this.renderBooks)
+          {this.props.books.length ? (
+            this.props.books.map(this.renderBooks)
           ) : (
             <div className={styles.noData}>
               <h2 className={styles.title}>No Data</h2>
             </div>
           )}
         </div>
-        {this.state.bookSelected.length ? (
-          <ShoppingCart data={this.state.bookSelected} addItem={this.addItem} removeItem={this.removeItem} />
+        {this.props.bookSelected.length ? (
+          <ShoppingCart data={this.props.bookSelected} addItem={this.addItem} removeItem={this.removeItem} />
         ) : null}
         <Footer />
       </Fragment>
@@ -102,7 +92,9 @@ App.propTypes = {
   searchBook: PropTypes.func,
   addToCart: PropTypes.func,
   addItem: PropTypes.func,
-  removeItem: PropTypes.func
+  removeItem: PropTypes.func,
+  books: PropTypes.arrayOf(bookSelectedPropType),
+  bookSelected: PropTypes.arrayOf(booksPropType)
 };
 
 App.defaultProps = {

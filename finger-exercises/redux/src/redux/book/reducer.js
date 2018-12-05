@@ -10,7 +10,7 @@ const filteredBooks = (arr, searchText) => arr.filter(item => item.name.toLowerC
 
 const sumQuantity = (booksSelected, id) => {
   const item = booksSelected.find(book => book.id === id);
-  item.quantity++;
+  item.quantity++; // eslint-disable-line no-plusplus
   const books = [...booksSelected].filter(book => book.id !== id);
   return [...books, item];
 };
