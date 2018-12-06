@@ -9,8 +9,6 @@ function reducer(state = initialState, action) {
     case actions.GET_USER_SUCCESS:
       return { ...state, user: action.payload[0] };
     case actions.GET_USER_FAILURE:
-      console.log('entro Reducer F');
-      console.log({ ...state, err: action.payload });
       return { ...state, err: action.payload };
     default:
       return state;

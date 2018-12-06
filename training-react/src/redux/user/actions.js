@@ -9,7 +9,7 @@ export const actions = {
 const actionsCreators = {
   getUser: values => async dispatch => {
     const response = await UserService.getUser(values);
-    if (response.ok) {
+    if (response.ok && response.status === 200) {
       dispatch({
         type: actions.GET_USER_SUCCESS,
         payload: response.data

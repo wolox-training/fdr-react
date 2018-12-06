@@ -65,8 +65,13 @@ class Game extends Component {
   submit = async values => {
     await this.props.getUser(values);
     const { user } = this.props;
-    window.alert(`User ${user && user.mail} login succesfully`); // eslint-disable-line no-alert
-    this.setState({ showLogin: false })
+    if (user) {
+      window.alert(`User ${user && user.mail} login succesfully`); // eslint-disable-line no-alert
+      this.setState({ showLogin: false })
+    } else {
+      window.alert(`User-password not found`); // eslint-disable-line no-alert
+    }
+    
   };
 
   render() {
