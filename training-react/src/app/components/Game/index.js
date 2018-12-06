@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import Board from '../Board';
-import RegisterForm from '../RegisterForm';
+import LoginForm from '../LoginForm';
 
 import calculateWinner from './utils';
 import styles from './styles.scss';
@@ -15,7 +15,7 @@ class Game extends Component {
     xIsNext: true,
     stepNumber: 0,
     isWinner: null,
-    showRegister: false
+    showLogin: false
   };
 
   getStatus = winner => {
@@ -53,9 +53,9 @@ class Game extends Component {
     });
   };
 
-  register = () => {
+  login = () => {
     this.setState(prevState => ({
-      showRegister: !prevState.showRegister
+      showLogin: !prevState.showLogin
     }));
   };
 
@@ -86,11 +86,10 @@ class Game extends Component {
             <ol>{moves}</ol>
           </div>
         </div>
-        <div className={styles.registerForm}>
-          <button onClick={this.register}>Register</button>
-          <button>Login</button>
-          <div className={this.state.showRegister ? '' : styles.hidden}>
-            <RegisterForm onSubmit={this.submit} />
+        <div className={styles.loginForm}>
+          <button onClick={this.login}>Login</button>
+          <div className={this.state.showLogin ? '' : styles.hidden}>
+            <LoginForm onSubmit={this.submit} />
           </div>
         </div>
       </div>
