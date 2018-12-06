@@ -1,0 +1,6 @@
+{
+  "user": [
+    { "id": 1, "mail": "federico.dirocco@wolox.com.ar", "password": "probando1111" },
+    { "id": 2, "mail": "carlos.bollero@wolox.com.ar", "password": "probando1234" }
+  ]
+}

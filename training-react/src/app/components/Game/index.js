@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
+import userActions from '../../../redux/user/actions';
 import Board from '../Board';
 import LoginForm from '../LoginForm';
 
@@ -59,9 +62,11 @@ class Game extends Component {
     }));
   };
 
-  submit = values => {
-    this.setState({ showRegister: false });
-    window.alert(JSON.stringify(values, null, 4)); // eslint-disable-line no-alert
+  submit = async values => {
+    await this.props.getUser(values);
+    const { user } = this.props;
+    window.alert(`User ${user && user.mail} login succesfully`); // eslint-disable-line no-alert
+    this.setState({ showLogin: false })
   };
 
   render() {
@@ -97,4 +102,19 @@ class Game extends Component {
   }
 }
 
-export default Game;
+const mapStateToProps = state => ({
+  user: state.users.user
+});
+
+const mapDispatchToProps = dispatch => ({
+  getUser: values => dispatch(userActions.getUser(values))
+});
+
+Game.propTypes = {
+  getUser: PropTypes.func
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Game);
