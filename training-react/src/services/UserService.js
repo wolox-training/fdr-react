@@ -8,6 +8,7 @@ export default {
   getUserById: id => api.get('/user', { id }),
   getUser: values =>
     api
+    .setHeader('Authorization', 'tok3nr34t')
     .get(`/user?email=${values.email}&password=${values.password}`)
     .then(response => {
       if(response && !response.data.length) {

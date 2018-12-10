@@ -97,10 +97,16 @@ class Game extends Component {
           </div>
         </div>
         <div className={styles.loginForm}>
-          <button onClick={this.login}>Login</button>
-          <div className={this.state.showLogin ? '' : styles.hidden}>
-            <LoginForm onSubmit={this.submit} />
-          </div>
+          {this.props.user ? (
+            <h3>User: {this.props.user.mail}</h3>
+          ) : (
+            <div>
+              <button onClick={this.login}>Login</button>
+              <div className={this.state.showLogin ? '' : styles.hidden}>
+                <LoginForm onSubmit={this.submit} />
+              </div>
+            </div>
+          )}
         </div>
       </div>
     );
