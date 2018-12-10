@@ -1,16 +1,14 @@
 export const actions = {
-  GET_OPEN: '@@SHOPPINGCART/GET_OPEN',
-  GET_CLOSE: '@@SHOPPINGCART/GET_CLOSE'
+  CHART_OPEN: '@@SHOPPINGCART/CHART_OPEN',
+  CHART_CLOSE: '@@SHOPPINGCART/CHART_CLOSE'
 };
 
 const actionsCreator = {
-  getOpen: () => ({
-    type: actions.GET_OPEN,
-    payload: { isOpen: true }
+  openChart: () => ({
+    type: actions.CHART_OPEN
   }),
-  getClose: () => ({
-    type: actions.GET_CLOSE,
-    payload: { isClose: false }
+  closeChart: () => ({
+    type: actions.CHART_CLOSE
   })
 };
 

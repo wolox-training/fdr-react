@@ -6,10 +6,10 @@ const initialState = {
 
 function reducer(state = initialState, action) {
   switch (action.type) {
-    case actions.GET_OPEN:
-      return { ...state, open: action.payload.isOpen };
-    case actions.GET_CLOSE:
-      return { ...state, open: action.payload.isClose };
+    case actions.CHART_OPEN:
+      return { ...state, open: true };
+    case actions.CHART_CLOSE:
+      return { ...state, open: false };
     default:
       return state;
   }

@@ -21,26 +21,14 @@ class App extends Component {
     this.props.searchBook(value);
   };
 
-  addToCart = item => {
-    this.props.addToCart(item);
-  };
-
-  addItem = itemId => {
-    this.props.addItem(itemId);
-  };
-
-  removeItem = itemId => {
-    this.props.removeItem(itemId);
-  };
-
   CONFIGURATION_BUTTON = {
     add: {
       text: 'Add to cart',
-      function: this.addToCart
+      function: this.props.addToCart
     },
     remove: {
       text: 'Remove',
-      function: this.removeItem,
+      function: this.props.removeItem,
       isDanger: true
     }
   };
@@ -52,21 +40,22 @@ class App extends Component {
   };
 
   render() {
+    const { books, bookSelected, addItem, removeItem } = this.props;
     return (
       <Fragment>
         <Navbar />
         <div className={styles.container}>
           <Search onSearch={this.onSearch} />
-          {this.props.books.length ? (
-            this.props.books.map(this.renderBooks)
+          {books.length ? (
+            books.map(this.renderBooks)
           ) : (
             <div className={styles.noData}>
               <h2 className={styles.title}>No Data</h2>
             </div>
           )}
         </div>
-        {this.props.bookSelected.length ? (
-          <ShoppingCart data={this.props.bookSelected} addItem={this.addItem} removeItem={this.removeItem} />
+        {bookSelected.length ? (
+          <ShoppingCart data={bookSelected} addItem={addItem} removeItem={removeItem} />
         ) : null}
         <Footer />
       </Fragment>

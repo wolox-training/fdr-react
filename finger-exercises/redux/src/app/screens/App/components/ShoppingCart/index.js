@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import store from '@redux/store';
 import { bookSelectedPropType } from '@constants/propTypes';
 import shopingCartActions from '@redux/shoppingCart/actions';
 import Button from '@components/Button';
@@ -10,30 +9,16 @@ import Item from './components/Item';
 import styles from './styles.scss';
 
 class ShoppingCart extends Component {
-  state = {
-    open: this.props.open
-  };
-
   componentDidMount() {
-    store.subscribe(() => {
-      const { shoppingCart } = store.getState();
-      this.setState({ open: shoppingCart.open });
-    });
+    this.props.openChart();
   }
 
-  getOpen = () => {
-    this.props.getOpen();
-  };
-
-  getOpen = () => {
-    this.props.getClose();
-  };
-
   toggleContent = () => {
-    if (this.props.open) {
-      this.props.getClose();
+    const { open, openChart, closeChart } = this.props;
+    if (open) {
+      closeChart();
     } else {
-      this.props.getOpen();
+      openChart();
     }
   };
 
@@ -51,7 +36,7 @@ class ShoppingCart extends Component {
         <Button className={styles.buttonCart} onClick={this.toggleContent}>
           <i className="fa fa-shopping-cart" />
         </Button>
-        <div className={`${styles.container} ${this.state.open ? styles.open : ''}`}>
+        <div className={`${styles.container} ${this.props.open ? styles.open : ''}`}>
           <h1 className={styles.title}>Cart</h1>
           <ul className={styles.content}>{data.map(this.renderItem)}</ul>
           <h2 className={`${styles.title} ${styles.total}`}>Total: {data.reduce(this.total, 0)}</h2>
@@ -66,16 +51,16 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getOpen: () => dispatch(shopingCartActions.getOpen()),
-  getClose: () => dispatch(shopingCartActions.getClose())
+  openChart: () => dispatch(shopingCartActions.openChart()),
+  closeChart: () => dispatch(shopingCartActions.closeChart())
 });
 
 ShoppingCart.propTypes = {
   data: PropTypes.arrayOf(bookSelectedPropType).isRequired,
   addItem: PropTypes.func.isRequired,
   removeItem: PropTypes.func.isRequired,
-  getOpen: PropTypes.func,
-  getClose: PropTypes.func,
+  openChart: PropTypes.func,
+  closeChart: PropTypes.func,
   open: PropTypes.bool
 };
 
