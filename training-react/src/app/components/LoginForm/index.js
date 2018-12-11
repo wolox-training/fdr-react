@@ -13,7 +13,7 @@ class LoginForm extends Component {
     return (
       <div className={styles.register}>
         <h2>Login</h2>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit(this.props.onSubmit)}>
           {/* eslint-disable prettier/prettier */}
           <Field
             name="email"
@@ -41,7 +41,8 @@ LoginForm = reduxForm({ // eslint-disable-line no-class-assign
 })(LoginForm);
 
 LoginForm.propTypes = {
-  handleSubmit: PropTypes.objectOf()
+  handleSubmit: PropTypes.func,
+  onSubmit: PropTypes.func
 };
 
 export default LoginForm;
