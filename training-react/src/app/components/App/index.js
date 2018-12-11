@@ -7,12 +7,15 @@ import Game from '../Game';
 import './styles.scss';
 import LoginForm from '../LoginForm';
 
+const USER_SESSION = 'USER_SESSION';
+
 class App extends Component {
   submit = async values => {
     const { getUser } = this.props;
     await getUser(values);
     const { user } = this.props;
     if (user) {
+      localStorage.setItem(USER_SESSION, JSON.stringify(user.mail));
       window.alert(`User ${user && user.mail} login succesfully`); // eslint-disable-line no-alert
     } else {
       window.alert(`User-password not found`); // eslint-disable-line no-alert
@@ -20,7 +23,7 @@ class App extends Component {
   };
 
   render() {
-    const { isLogged } = this.props;
+    const user = localStorage.getItem(USER_SESSION);
     return (
       <Router>
         <div>
@@ -29,7 +32,7 @@ class App extends Component {
               exact
               path="/"
               render={props =>
-                isLogged ? <Redirect to="/game" /> : <LoginForm {...props} onSubmit={this.submit} />
+                user ? <Redirect to="/game" /> : <LoginForm {...props} onSubmit={this.submit} />
               }
             />
             <Route path="/game" component={Game} />
@@ -42,8 +45,7 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.users.user,
-  isLogged: state.users.isLogged
+  user: state.users.user
 });
 
 const mapDispatchToProps = dispatch => ({
