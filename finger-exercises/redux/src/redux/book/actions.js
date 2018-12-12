@@ -17,23 +17,23 @@ export const actions = {
 const actionsCreator = {
   getBooks: () => ({
     type: actions.GET_BOOKS,
-    payload: DATA
+    payload: { books: DATA }
   }),
   addToCart: item => ({
     type: actions.ADD_TO_CART,
-    payload: item
+    payload: { book: item }
   }),
   addItem: itemId => ({
     type: actions.ADD_ITEM,
-    payload: itemId
+    payload: { book: itemId }
   }),
   removeItem: itemId => ({
     type: actions.REMOVE_ITEM,
-    payload: itemId
+    payload: { book: itemId }
   }),
   searchBook: value => ({
     type: actions.SEARCH_ITEM,
-    payload: value
+    payload: { search: value }
   })
 };
 

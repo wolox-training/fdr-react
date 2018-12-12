@@ -10,7 +10,7 @@ import styles from './styles.scss';
 
 class ShoppingCart extends Component {
   componentDidMount() {
-    this.props.openChart();
+    this.toggleContent();
   }
 
   toggleContent = () => {

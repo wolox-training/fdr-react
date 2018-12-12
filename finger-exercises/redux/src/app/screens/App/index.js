@@ -16,11 +16,6 @@ class App extends Component {
     this.props.getBooks();
   }
 
-  onSearch = value => {
-    this.props.getBooks();
-    this.props.searchBook(value);
-  };
-
   CONFIGURATION_BUTTON = {
     add: {
       text: 'Add to cart',
@@ -45,8 +40,8 @@ class App extends Component {
       <Fragment>
         <Navbar />
         <div className={styles.container}>
-          <Search onSearch={this.onSearch} />
-          {books.length ? (
+          <Search onSearch={this.props.searchBook} />
+          {books && books.length ? (
             books.map(this.renderBooks)
           ) : (
             <div className={styles.noData}>
@@ -54,7 +49,7 @@ class App extends Component {
             </div>
           )}
         </div>
-        {bookSelected.length ? (
+        {bookSelected && bookSelected.length ? (
           <ShoppingCart data={bookSelected} addItem={addItem} removeItem={removeItem} />
         ) : null}
         <Footer />
@@ -70,7 +65,10 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getBooks: () => dispatch(bookActions.getBooks()),
-  searchBook: value => dispatch(bookActions.searchBook(value)),
+  searchBook: value => {
+    dispatch(bookActions.getBooks());
+    dispatch(bookActions.searchBook(value));
+  },
   addToCart: item => dispatch(bookActions.addToCart(item)),
   addItem: itemId => dispatch(bookActions.addItem(itemId)),
   removeItem: itemId => dispatch(bookActions.removeItem(itemId))
