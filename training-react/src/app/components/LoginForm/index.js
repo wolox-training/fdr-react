@@ -12,7 +12,7 @@ class LoginForm extends Component {
     const { handleSubmit } = this.props;
     return (
       <div className={styles.register}>
-        <h2>Login</h2>
+        <h2 className={styles.title}>Login</h2>
         <form onSubmit={handleSubmit(this.props.onSubmit)}>
           {/* eslint-disable prettier/prettier */}
           <Field

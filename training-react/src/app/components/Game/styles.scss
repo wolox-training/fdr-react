@@ -7,13 +7,17 @@
     display: flex;
     flex-direction: column;
     margin: 20px;
+
+    .info {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      font-weight: bold;
+      margin: 20px;
+    }
   }
 
   .hidden {
     display: none;
-  }
-
-  .info {
-    margin: 20px;
-  }  
+  } 
 }
