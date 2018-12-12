@@ -5,10 +5,10 @@ import { connect } from 'react-redux';
 import userActions from '../../../redux/user/actions';
 import Game from '../Game';
 import Topbar from '../Topbar';
+import User from '../User';
 import './styles.scss';
 import LoginForm from '../LoginForm';
-import { login } from '../../../helpers/auth';
-import { USER_SESSION } from '../../../constants/login';
+import { login, USER_SESSION } from '../../../helpers/auth';
 
 class App extends Component {
   submitLogin = values => {
@@ -20,7 +20,13 @@ class App extends Component {
     await getUser(values);
     const { user } = this.props;
     if (user) {
-      localStorage.setItem(USER_SESSION, JSON.stringify(user.mail));
+      localStorage.setItem(
+        USER_SESSION,
+        JSON.stringify({
+          id: user.id,
+          email: user.mail
+        })
+      );
       window.alert(`User ${user && user.mail} login succesfully`); // eslint-disable-line no-alert
       window.location.reload();
     } else {
@@ -29,19 +35,20 @@ class App extends Component {
   };
 
   render() {
-    const user = localStorage.getItem(USER_SESSION);
+    const userSession = JSON.parse(localStorage.getItem(USER_SESSION));
     return (
       <Router>
-        <Route path="/" render={props => (user ? <Topbar {...props} user={user} /> : null)} />
+        <Route path="/" render={props => (userSession ? <Topbar {...props} user={userSession} /> : null)} />
         <Switch>
           <Route
             exact
             path="/"
             render={props =>
-              user ? <Redirect to="/game" /> : <LoginForm {...props} onSubmit={this.submit} />
+              userSession ? <Redirect to="/game" /> : <LoginForm {...props} onSubmit={this.submit} />
             }
           />
-          <Route path="/game" render={() => (!user ? <Redirect to="/" /> : <Game />)} />
+          <Route path="/game" render={() => (!userSession ? <Redirect to="/" /> : <Game />)} />
+          <Route path="/user/:userId" component={User} />
           <Route path="*" render={() => <h2>Page not found</h2>} />
         </Switch>
       </Router>

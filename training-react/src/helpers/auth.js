@@ -1,11 +1,17 @@
-const USER_SESSION = 'USER_SESSION';
+export const USER_SESSION = 'USER_SESSION';
 
 export const login = async (values, props) => {
   const { getUser } = props;
   await getUser(values);
   const { user } = props;
   if (user) {
-    localStorage.setItem(USER_SESSION, JSON.stringify(user.mail));
+    localStorage.setItem(
+      USER_SESSION,
+      JSON.stringify({
+        id: user.id,
+        email: user.mail
+      })
+    );
     window.alert(`User ${user && user.mail} login succesfully`); // eslint-disable-line no-alert
     window.location.reload();
   } else {
