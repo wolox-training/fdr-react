@@ -9,7 +9,7 @@ export const login = async (values, props) => {
       USER_SESSION,
       JSON.stringify({
         id: user.id,
-        email: user.mail
+        username: user.username
       })
     );
     window.alert(`User ${user && user.mail} login succesfully`); // eslint-disable-line no-alert

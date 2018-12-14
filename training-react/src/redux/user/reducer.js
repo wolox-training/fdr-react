@@ -7,9 +7,9 @@ function reducer(state = initialState, action) {
     case actions.GET_USER:
       return { ...state };
     case actions.GET_USER_SUCCESS:
-      return { ...state, user: action.payload[0] };
+      return { ...state, user: action.payload.user[0] };
     case actions.GET_USER_FAILURE:
-      return { ...state, err: action.payload };
+      return { ...state, err: action.payload.err };
     default:
       return state;
   }

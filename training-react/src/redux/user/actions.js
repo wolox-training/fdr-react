@@ -12,12 +12,26 @@ const actionsCreators = {
     if (response.status === 200) {
       dispatch({
         type: actions.GET_USER_SUCCESS,
-        payload: response.data
+        payload: { user: response.data }
       });
     } else {
       dispatch({
         type: actions.GET_USER_FAILURE,
-        payload: response.problem
+        payload: { err: response.problem }
+      });
+    }
+  },
+  setUser: values => async dispatch => {
+    const response = await UserService.setUser(values);
+    if (response.status === 200) {
+      dispatch({
+        type: actions.GET_USER_SUCCESS,
+        payload: { user: response.data }
+      });
+    } else {
+      dispatch({
+        type: actions.GET_USER_FAILURE,
+        payload: { err: response.problem }
       });
     }
   }

@@ -8,15 +8,17 @@ import styles from './styles.scss';
 
 class Topbar extends Component {
   render() {
-    const { user } = this.props;
+    const { userSession } = this.props;
 
     return (
       <div className={styles.topbar}>
-        <h2 className={styles.gameTitle}>Tic Tac Toe</h2>
+        <h2 className={styles.gameTitle}>
+          <Link to="/game">Tic Tac Toe</Link>
+        </h2>
         <div className={styles.login}>
           <i className="far fa-user-circle" />
           <h5 className={styles.user}>
-            <Link to={`/user/${user.id}`}>{user.email}</Link>
+            <Link to={`/user/${userSession.id}`}>{userSession.username}</Link>
           </h5>
           <button className={styles.buttonLogout} onClick={logout}>
             Logout
@@ -28,7 +30,7 @@ class Topbar extends Component {
 }
 
 Topbar.propTypes = {
-  user: PropTypes.shape({
+  userSession: PropTypes.shape({
     id: PropTypes.number,
     email: PropTypes.string
   })

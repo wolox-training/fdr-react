@@ -24,7 +24,7 @@ class App extends Component {
         USER_SESSION,
         JSON.stringify({
           id: user.id,
-          email: user.mail
+          username: user.username
         })
       );
       window.alert(`User ${user && user.mail} login succesfully`); // eslint-disable-line no-alert
@@ -38,7 +38,10 @@ class App extends Component {
     const userSession = JSON.parse(localStorage.getItem(USER_SESSION));
     return (
       <Router>
-        <Route path="/" render={props => (userSession ? <Topbar {...props} user={userSession} /> : null)} />
+        <Route
+          path="/"
+          render={props => (userSession ? <Topbar {...props} userSession={userSession} /> : null)}
+        />
         <Switch>
           <Route
             exact
@@ -48,7 +51,12 @@ class App extends Component {
             }
           />
           <Route path="/game" render={() => (!userSession ? <Redirect to="/" /> : <Game />)} />
-          <Route path="/user/:userId" component={User} />
+          <Route
+            path="/user/:userId"
+            render={props =>
+              !userSession ? <Redirect to="/" /> : <User {...props} userSession={userSession} />
+            }
+          />
           <Route path="*" render={() => <h2>Page not found</h2>} />
         </Switch>
       </Router>
