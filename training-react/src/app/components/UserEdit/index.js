@@ -13,7 +13,9 @@ class UserEdit extends Component {
     this.props.initialize({
       gender: user.gender,
       country: user.country,
-      mail: user.mail
+      mail: user.mail,
+      username: user.username,
+      fullname: user.fullname
     });
   }
 
