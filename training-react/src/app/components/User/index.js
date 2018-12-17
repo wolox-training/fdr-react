@@ -5,16 +5,35 @@ import PropTypes from 'prop-types';
 
 import userActions from '../../../redux/user/actions';
 import Loading from '../Loading';
+import UserInfo from '../UserInfo';
+import UserEdit from '../UserEdit';
 
 import styles from './styles.scss';
 
 class User extends Component {
+  state = {
+    isSettingUser: false
+  };
+
   componentDidMount() {
     this.props.getUser(this.props.userSession);
   }
 
+  editUser = () => {
+    this.setState(prevState => ({
+      isSettingUser: !prevState.isSettingUser
+    }));
+  };
+
   render() {
-    const { user } = this.props;
+    const { user, setUser } = this.props;
+    const { isSettingUser } = this.state;
+
+    let infoUser = <UserInfo user={user} />;
+    if (isSettingUser) {
+      infoUser = <UserEdit user={user} setUser={setUser} />;
+    }
+
     if (!user) {
       return <Loading />;
     }
@@ -32,20 +51,11 @@ class User extends Component {
             <h5 className={styles.username}>
               <i className="fab fa-slack" /> {user.username}
             </h5>
-            <button className={styles.btn}>Editar perfil</button>
+            <button className={styles.btn} onClick={this.editUser}>
+              Editar perfil
+            </button>
           </div>
-          <div className={styles.desc}>
-            <h4 className={styles.generalInfo}>General Information</h4>
-            <h5>
-              <i className="far fa-user" /> Gender: {user.gender}
-            </h5>
-            <h5>
-              <i className="fas fa-globe-americas" /> Country: {user.country}
-            </h5>
-            <h5>
-              <i className="fas fa-envelope" /> Mail: {user.mail}
-            </h5>
-          </div>
+          {infoUser}
         </div>
         <div className={styles.btnBack}>
           <Link to={`/game`}>
@@ -72,6 +82,7 @@ User.propTypes = {
     email: PropTypes.string
   }),
   getUser: PropTypes.func,
+  setUser: PropTypes.func,
   user: PropTypes.shape({
     id: PropTypes.number,
     mail: PropTypes.string,

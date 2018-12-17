@@ -23,10 +23,10 @@ export default {
       });
   },
   setUser: async values => {
-    const { id, data } = values;
+    const { id, ...data } = values;
     return api
       .setHeader('Authorization', 'tok3nr34t')
-      .post(`/users/${id}`, data)
+      .put(`/user/${id}`, data)
       .then(response => {
         if (response && !response.data.length) {
           response.status = STATUS_NOT_FOUND;
