@@ -1,40 +1,22 @@
+import { completeTypes, createTypes } from 'redux-recompose';
+
 import UserService from '../../services/UserService';
 
-export const actions = {
-  GET_USER: '@@USER/GET_USER',
-  GET_USER_SUCCESS: '@@USER/GET_USER_SUCCESS',
-  GET_USER_FAILURE: '@@USER/GET_USER_FAILURE'
+export const actions = createTypes(completeTypes(['GET_USER', 'SET_USER']), '@USER');
+
+const actionCreators = {
+  getUser: values => ({
+    type: actions.GET_USER,
+    target: 'user',
+    service: UserService.getUser,
+    payload: values
+  }),
+  setUser: values => ({
+    type: actions.SET_USER,
+    target: 'user',
+    service: UserService.setUser,
+    payload: values
+  })
 };
 
-const actionsCreators = {
-  getUser: values => async dispatch => {
-    const response = await UserService.getUser(values);
-    if (response.status === 200) {
-      dispatch({
-        type: actions.GET_USER_SUCCESS,
-        payload: { user: response.data }
-      });
-    } else {
-      dispatch({
-        type: actions.GET_USER_FAILURE,
-        payload: { err: response.problem }
-      });
-    }
-  },
-  setUser: values => async dispatch => {
-    const response = await UserService.setUser(values);
-    if (response.status === 200) {
-      dispatch({
-        type: actions.GET_USER_SUCCESS,
-        payload: { user: response.data }
-      });
-    } else {
-      dispatch({
-        type: actions.GET_USER_FAILURE,
-        payload: { err: response.problem }
-      });
-    }
-  }
-};
-
-export default actionsCreators;
+export default actionCreators;

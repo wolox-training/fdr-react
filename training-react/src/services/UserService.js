@@ -4,7 +4,7 @@ export const STATUS_OK = 200;
 export const STATUS_NOT_FOUND = 403;
 
 export default {
-  getUser: values => {
+  getUser: async values => {
     let url;
     if (values.email && values.password) {
       url = `/user?email=${values.email}&password=${values.password}`;

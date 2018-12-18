@@ -1,18 +1,13 @@
+import { completeReducer, createReducer } from 'redux-recompose';
+
 import { actions } from './actions';
 
-const initialState = {};
+const initialState = {
+  user: null
+};
 
-function reducer(state = initialState, action) {
-  switch (action.type) {
-    case actions.GET_USER:
-      return { ...state };
-    case actions.GET_USER_SUCCESS:
-      return { ...state, user: action.payload.user[0] };
-    case actions.GET_USER_FAILURE:
-      return { ...state, err: action.payload.err };
-    default:
-      return state;
-  }
-}
+const reducerDescription = {
+  primaryActions: [actions.GET_USER, actions.SET_USER]
+};
 
-export default reducer;
+export default createReducer(initialState, completeReducer(reducerDescription));
