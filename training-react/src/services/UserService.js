@@ -11,28 +11,10 @@ export default {
     } else {
       url = `/user?id=${values.id}`;
     }
-    return api
-      .setHeader('Authorization', 'tok3nr34t')
-      .get(url)
-      .then(response => {
-        if (response && !response.data.length) {
-          response.status = STATUS_NOT_FOUND;
-          response.problem = 'User not found';
-        }
-        return response;
-      });
+    return api.get(url);
   },
   setUser: async values => {
     const { id, ...data } = values;
-    return api
-      .setHeader('Authorization', 'tok3nr34t')
-      .put(`/user/${id}`, data)
-      .then(response => {
-        if (response && !response.data.length) {
-          response.status = STATUS_NOT_FOUND;
-          response.problem = 'User not found';
-        }
-        return response;
-      });
+    return api.put(`/user/${id}`, data);
   }
 };
