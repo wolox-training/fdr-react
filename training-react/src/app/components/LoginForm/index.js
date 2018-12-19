@@ -1,20 +1,26 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { customInput } from '../Field';
+import userActions from '../../../redux/user/actions';
 
 import styles from './styles.scss';
 import { required, minLength, isEmail } from './validation';
 
 class LoginForm extends Component {
+  submit = values => {
+    const { getUser } = this.props;
+    getUser(values);
+  };
+
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, err } = this.props;
     return (
-      <div className={styles.register}>
+      <div className={styles.login}>
         <h2>Login</h2>
-        <form onSubmit={handleSubmit(this.props.onSubmit)}>
-          {/* eslint-disable prettier/prettier */}
+        <form onSubmit={handleSubmit(this.submit)}>
           <Field
             name="email"
             component={customInput}
@@ -31,18 +37,32 @@ class LoginForm extends Component {
           />
           <button type="submit">Submit</button>
         </form>
+        {err && <div className={styles.error}>User-password not found</div>}
       </div>
     );
   }
 }
 
-LoginForm = reduxForm({ // eslint-disable-line no-class-assign 
-  form: 'register'
-})(LoginForm);
-
 LoginForm.propTypes = {
   handleSubmit: PropTypes.func,
-  onSubmit: PropTypes.func
+  getUser: PropTypes.func,
+  err: PropTypes.string
 };
 
-export default LoginForm;
+const mapStateToProps = state => ({
+  user: state.users.user,
+  err: state.users.error
+});
+
+const mapDispatchToProps = dispatch => ({
+  getUser: values => dispatch(userActions.getUser(values))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(
+  reduxForm({
+    form: 'register'
+  })(LoginForm)
+);
