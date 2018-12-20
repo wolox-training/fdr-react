@@ -5,4 +5,6 @@ const api = create({
   timeout: 5000
 });
 
+api.setHeader('Authorization', 'tok3nr34t');
+
 export default api;

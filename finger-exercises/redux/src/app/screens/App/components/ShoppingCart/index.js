@@ -1,20 +1,25 @@
-import React, { PureComponent, Fragment } from 'react';
-import { arrayOf, func } from 'prop-types';
+import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { bookSelectedPropType } from '@constants/propTypes';
+import shopingCartActions from '@redux/shoppingCart/actions';
 import Button from '@components/Button';
 
 import Item from './components/Item';
 import styles from './styles.scss';
 
-class ShoppingCart extends PureComponent {
-  state = {
-    open: false
-  };
+class ShoppingCart extends Component {
+  componentDidMount() {
+    this.toggleContent();
+  }
 
   toggleContent = () => {
-    this.setState(prevState => ({
-      open: !prevState.open
-    }));
+    const { open, openChart, closeChart } = this.props;
+    if (open) {
+      closeChart();
+    } else {
+      openChart();
+    }
   };
 
   total = (accumulator, currentValue) => accumulator + currentValue.quantity;
@@ -31,7 +36,7 @@ class ShoppingCart extends PureComponent {
         <Button className={styles.buttonCart} onClick={this.toggleContent}>
           <i className="fa fa-shopping-cart" />
         </Button>
-        <div className={`${styles.container} ${this.state.open ? styles.open : ''}`}>
+        <div className={`${styles.container} ${this.props.open ? styles.open : ''}`}>
           <h1 className={styles.title}>Cart</h1>
           <ul className={styles.content}>{data.map(this.renderItem)}</ul>
           <h2 className={`${styles.title} ${styles.total}`}>Total: {data.reduce(this.total, 0)}</h2>
@@ -41,10 +46,29 @@ class ShoppingCart extends PureComponent {
   }
 }
 
+const mapStateToProps = state => ({
+  open: state.shoppingCart.open
+});
+
+const mapDispatchToProps = dispatch => ({
+  openChart: () => dispatch(shopingCartActions.openChart()),
+  closeChart: () => dispatch(shopingCartActions.closeChart())
+});
+
 ShoppingCart.propTypes = {
-  data: arrayOf(bookSelectedPropType).isRequired,
-  addItem: func.isRequired,
-  removeItem: func.isRequired
+  data: PropTypes.arrayOf(bookSelectedPropType).isRequired,
+  addItem: PropTypes.func.isRequired,
+  removeItem: PropTypes.func.isRequired,
+  openChart: PropTypes.func,
+  closeChart: PropTypes.func,
+  open: PropTypes.bool
 };
 
-export default ShoppingCart;
+ShoppingCart.defaultProps = {
+  open: false
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ShoppingCart);

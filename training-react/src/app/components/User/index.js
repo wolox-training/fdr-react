@@ -4,11 +4,14 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import userActions from '../../../redux/user/actions';
+import LocalStoreService from '../../../services/LocalStoreService';
 import Loading from '../Loading';
 import UserInfo from '../UserInfo';
 import UserEdit from '../UserEdit';
 
 import styles from './styles.scss';
+
+const USER_SESSION = 'USER_SESSION';
 
 class User extends Component {
   state = {
@@ -16,7 +19,8 @@ class User extends Component {
   };
 
   componentDidMount() {
-    this.props.getUser(this.props.userSession);
+    const user = JSON.parse(LocalStoreService.getItem(USER_SESSION));
+    this.props.getUser(user);
   }
 
   editUser = () => {
@@ -77,10 +81,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 User.propTypes = {
-  userSession: PropTypes.shape({
-    id: PropTypes.number,
-    email: PropTypes.string
-  }),
   getUser: PropTypes.func,
   setUser: PropTypes.func,
   user: PropTypes.shape({

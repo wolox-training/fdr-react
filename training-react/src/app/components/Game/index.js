@@ -7,10 +7,11 @@ import styles from './styles.scss';
 
 class Game extends Component {
   state = {
-    /* eslint-disable prettier/prettier */
-    history: [{
-      squares: Array(9).fill(null),
-    }],
+    history: [
+      {
+        squares: Array(9).fill(null)
+      }
+    ],
     xIsNext: true,
     stepNumber: 0,
     isWinner: null
