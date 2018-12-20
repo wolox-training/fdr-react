@@ -22,7 +22,7 @@ class Topbar extends Component {
               <h5 className={styles.user}>
                 <Link to={`/user/${user.id}`}>{user.username}</Link>
               </h5>
-              <button className={styles.buttonLogout} onClick={logout}>
+              <button className={styles.buttonLogout} onClick={() => logout(this.props)}>
                 Logout
               </button>
             </div>

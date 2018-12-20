@@ -5,15 +5,14 @@ import PropTypes from 'prop-types';
 
 import { customInput } from '../Field';
 import userActions from '../../../redux/user/actions';
+import { login } from '../../../helpers/auth';
 
 import styles from './styles.scss';
 import { required, minLength, isEmail } from './validation';
 
 class LoginForm extends Component {
   submit = values => {
-    const { getUser, history } = this.props;
-    getUser(values);
-    history.push('/game');
+    login(values, this.props);
   };
 
   render() {
@@ -46,7 +45,6 @@ class LoginForm extends Component {
 
 LoginForm.propTypes = {
   handleSubmit: PropTypes.func,
-  getUser: PropTypes.func,
   err: PropTypes.string
 };
 
