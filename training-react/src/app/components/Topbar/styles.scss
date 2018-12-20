@@ -33,20 +33,25 @@
     justify-content: flex-end;
     width: 100%;
 
-    .user {
-      padding: 10px;      
-    }
+    .loginInfo {
+      display: flex;
+      align-items: center;
 
-    .buttonLogout {
-      background: black;      
-      border: 0;
-      border-radius: 5px;
-      color: orange;
-      margin: 10px;
-
-      &:hover {
-        border: 1px solid grey;
-        color: grey;
+      .user {
+        padding: 10px;
+      }
+  
+      .buttonLogout {
+        background: black;      
+        border: 0;
+        border-radius: 5px;
+        color: orange;
+        margin: 10px;
+  
+        &:hover {
+          border: 1px solid grey;
+          color: grey;
+        }
       }
     }
   }
