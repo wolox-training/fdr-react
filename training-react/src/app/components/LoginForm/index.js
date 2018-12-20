@@ -11,8 +11,9 @@ import { required, minLength, isEmail } from './validation';
 
 class LoginForm extends Component {
   submit = values => {
-    const { getUser } = this.props;
+    const { getUser, history } = this.props;
     getUser(values);
+    history.push('/game');
   };
 
   render() {

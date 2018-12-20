@@ -17,10 +17,6 @@ class Game extends Component {
     isWinner: null
   };
 
-  componentDidMount() {
-    this.props.history.push('/game');
-  }
-
   getStatus = winner => {
     let status;
     if (winner) {
