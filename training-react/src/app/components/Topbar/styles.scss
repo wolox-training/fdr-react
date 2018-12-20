@@ -15,12 +15,17 @@
     justify-content: flex-end;
     width: 100%;
 
-    .user {
-      padding: 10px;
-    }
+    .loginInfo {
+      display: flex;
+      align-items: center;
 
-    .buttonLogout {
-      margin: 10px;
-    }
+      .user {
+        padding: 10px;
+      }
+  
+      .buttonLogout {
+        margin: 10px;
+      }
+    }    
   }
 }
