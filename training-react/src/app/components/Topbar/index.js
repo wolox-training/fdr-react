@@ -12,8 +12,6 @@ const USER_SESSION = 'USER_SESSION';
 class Topbar extends Component {
   render() {
     const user = JSON.parse(LocalStoreService.getItem(USER_SESSION));
-    console.log(user);
-
     return (
       <div className={styles.topbar}>
         <h2 className={styles.gameTitle}>Tic Tac Toe</h2>
