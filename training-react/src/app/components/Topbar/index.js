@@ -16,7 +16,7 @@ class Topbar extends Component {
       <div className={styles.topbar}>
         <h2 className={styles.gameTitle}>Tic Tac Toe</h2>
         <div className={styles.login}>
-          {user !== 'undefined' && (
+          {user && user !== 'undefined' && (
             <div className={styles.loginInfo}>
               <i className="far fa-user-circle" />
               <h5 className={styles.user}>
