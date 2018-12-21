@@ -11,7 +11,7 @@ export const PrivateRoute = ({ component: Component, isTopBar, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={props => (user !== 'undefined' ? <Component {...props} /> : <LoginForm {...props} />)}
+      render={props => (user && user !== 'undefined' ? <Component {...props} /> : <LoginForm {...props} />)}
     />
   );
 };

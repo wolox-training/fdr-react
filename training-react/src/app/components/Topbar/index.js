@@ -18,7 +18,7 @@ class Topbar extends Component {
           <Link to="/game">Tic Tac Toe</Link>
         </h2>
         <div className={styles.login}>
-          {user !== 'undefined' && (
+          {user && user !== 'undefined' && (
             <div className={styles.loginInfo}>
               <i className="far fa-user-circle" />
               <h5 className={styles.user}>
