@@ -11,7 +11,14 @@ export default {
     } else {
       url = `/user?id=${values.id}`;
     }
-    return api.get(url);
+    return api.get(url).then(response => {
+      if (response && !response.data.length) {
+        response.status = STATUS_NOT_FOUND;
+        response.problem = 'User not found';
+        response.ok = false;
+      }
+      return response;
+    });
   },
   setUser: async values => {
     const { id, ...data } = values;

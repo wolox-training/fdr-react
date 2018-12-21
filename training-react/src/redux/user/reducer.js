@@ -15,6 +15,10 @@ const reducerDescription = {
       const user = action.payload[0];
       localStorage.setItem(USER_SESSION, JSON.stringify(user));
       return { ...state, user };
+    },
+    [actions.GET_USER_FAILURE]: (state, action) => {
+      const error = action.payload;
+      return { ...state, error };
     }
   }
 };
