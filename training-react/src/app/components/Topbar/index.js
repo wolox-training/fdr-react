@@ -22,7 +22,7 @@ class Topbar extends Component {
             <div className={styles.loginInfo}>
               <i className="far fa-user-circle" />
               <h5 className={styles.user}>
-                <Link to={`/user/${user.id}`}>{JSON.parse(user).username}</Link>
+                <Link to={`/user/${JSON.parse(user).id}`}>{JSON.parse(user).username}</Link>
               </h5>
               <button className={styles.buttonLogout} onClick={() => logout(this.props)}>
                 Logout
