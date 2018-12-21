@@ -11,16 +11,16 @@ const USER_SESSION = 'USER_SESSION';
 
 class Topbar extends Component {
   render() {
-    const user = JSON.parse(LocalStoreService.getItem(USER_SESSION));
+    const user = LocalStoreService.getItem(USER_SESSION);
     return (
       <div className={styles.topbar}>
         <h2 className={styles.gameTitle}>Tic Tac Toe</h2>
         <div className={styles.login}>
-          {user && user && (
+          {user !== 'undefined' && (
             <div className={styles.loginInfo}>
               <i className="far fa-user-circle" />
               <h5 className={styles.user}>
-                <Link to={`/user/${user.id}`}>{user.username}</Link>
+                <Link to={`/user/${user.id}`}>{JSON.parse(user).username}</Link>
               </h5>
               <button className={styles.buttonLogout} onClick={() => logout(this.props)}>
                 Logout
