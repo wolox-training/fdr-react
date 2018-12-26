@@ -1,9 +1,9 @@
-.status {
-  margin-bottom: 10px;
-}
+.board {
+  border: 3px solid orange;
 
-.row:after {
-  clear: both;
-  content: "";
-  display: table;
+  .row:after {
+    clear: both;
+    content: "";
+    display: table;
+  }
 }

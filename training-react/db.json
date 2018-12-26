@@ -1,0 +1,24 @@
+{
+  "user": [
+    {
+      "imageUrl": "https://media.licdn.com/dms/image/C4E03AQH1LUgIAowXrA/profile-displayphoto-shrink_200_200/0?e=1550707200&v=beta&t=YZl22ZIx84EthgR9JpEcwKeQ7NUdhrXhfRMTkIPrYIM",
+      "username": "fededirocco",
+      "fullname": "Federico Di Rocco",
+      "gender": "Male",
+      "country": "Argentina",
+      "mail": "federico.dirocco@wolox.com.ar",
+      "password": "probando1111",
+      "id": 1
+    },
+    {
+      "id": 2,
+      "mail": "carlos.bollero@wolox.com.ar",
+      "password": "probando1234",
+      "username": "carlosbollero",
+      "fullname": "Carlos Bollero",
+      "gender": "Male",
+      "country": "Argentina",
+      "imageUrl": "https://media.licdn.com/dms/image/C5103AQFsMSzkPZlYVA/profile-displayphoto-shrink_800_800/0?e=1550102400&v=beta&t=EPHVzc1jdmHkozk4DigLoZvstJKvmmzH5YXIp94VnCA"
+    }
+  ]
+}
