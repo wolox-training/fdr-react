@@ -5,8 +5,8 @@ import LoadingItem from '../LoadingItem';
 const withLoadingScreen = WrappedComponent =>
   class LoadingScreen extends Component {
     render() {
-      const { user } = this.props;
-      if (!user) return <LoadingItem />;
+      const { isLoading } = this.props;
+      if (isLoading) return <LoadingItem />;
       return <WrappedComponent {...this.props} />;
     }
   };
