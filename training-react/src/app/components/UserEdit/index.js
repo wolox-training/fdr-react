@@ -9,20 +9,20 @@ import styles from './styles.scss';
 
 class UserEdit extends Component {
   componentDidMount() {
-    const { user } = this.props;
+    const { userSession } = this.props;
     this.props.initialize({
-      gender: user.gender,
-      country: user.country,
-      mail: user.mail,
-      username: user.username,
-      fullname: user.fullname
+      gender: userSession.gender,
+      country: userSession.country,
+      mail: userSession.mail,
+      username: userSession.username,
+      fullname: userSession.fullname
     });
   }
 
-  onSubmit = async values => {
-    const { user, setUser } = this.props;
-    await setUser({ ...user, ...values });
-    window.location.reload();
+  onSubmit = values => {
+    const { userSession, setUser, editUser } = this.props;
+    setUser({ ...userSession, ...values });
+    editUser();
   };
 
   render() {
@@ -32,31 +32,10 @@ class UserEdit extends Component {
       <div className={styles.desc}>
         <h2 className={styles.title}>Edit</h2>
         <form onSubmit={handleSubmit(this.onSubmit)}>
-          {/* eslint-disable prettier/prettier */}
-          <Field
-            name="username"
-            component={customInput}
-            type="text"
-            label="Username"
-          />
-          <Field
-            name="fullname"
-            component={customInput}
-            type="text"
-            label="Fullname"
-          />
-          <Field
-            name="gender"
-            component={customInput}
-            type="text"
-            label="Gender"
-          />
-          <Field
-            name="country"
-            component={customInput}
-            type="text"
-            label="Country"
-          />
+          <Field name="username" component={customInput} type="text" label="Username" />
+          <Field name="fullname" component={customInput} type="text" label="Fullname" />
+          <Field name="gender" component={customInput} type="text" label="Gender" />
+          <Field name="country" component={customInput} type="text" label="Country" />
           <Field
             name="mail"
             component={customInput}
@@ -72,7 +51,7 @@ class UserEdit extends Component {
 }
 
 UserEdit.propTypes = {
-  user: PropTypes.shape({
+  userSession: PropTypes.shape({
     id: PropTypes.number,
     mail: PropTypes.string,
     password: PropTypes.string,
@@ -83,11 +62,9 @@ UserEdit.propTypes = {
     imageUrl: PropTypes.string
   }),
   initialize: PropTypes.func,
-  handleSubmit: PropTypes.func
+  handleSubmit: PropTypes.func,
+  setUser: PropTypes.func,
+  editUser: PropTypes.func
 };
 
-UserEdit = reduxForm({ // eslint-disable-line no-class-assign
-  form: 'edit'
-})(UserEdit);
-
-export default UserEdit;
+export default reduxForm({ form: 'edit' })(UserEdit);

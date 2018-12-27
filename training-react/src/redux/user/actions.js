@@ -29,6 +29,8 @@ const actionsCreators = {
   setUser: values => async dispatch => {
     const response = await UserService.setUser(values);
     if (response.status === 200) {
+      const user = response.data;
+      LocalStoreService.saveItem(USER_SESSION, JSON.stringify(user));
       dispatch({
         type: actions.GET_USER_SUCCESS,
         payload: { user: response.data }

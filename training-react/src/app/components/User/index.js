@@ -31,15 +31,18 @@ class User extends Component {
 
   render() {
     const { user, setUser } = this.props;
+    const userSession = user ? this.props.user : JSON.parse(LocalStoreService.getItem(USER_SESSION));
     const { isSettingUser } = this.state;
 
-    let infoUser = <UserInfo user={user} />;
+    let infoUser = <UserInfo userSession={userSession} />;
     if (isSettingUser) {
-      infoUser = <UserEdit user={user} setUser={setUser} />;
+      infoUser = (
+        <UserEdit userSession={userSession} setUser={setUser} editUser={this.editUser} {...this.props} />
+      );
     }
 
-    if (!user) {
-      return <Loading />;
+    if (!userSession) {
+      return Loading();
     }
     return (
       <div className={styles.user}>
@@ -50,10 +53,10 @@ class User extends Component {
         </div>
         <div className={styles.userContainer}>
           <div className={styles.profile}>
-            <img className={styles.image} src={user.imageUrl} alt="User" />
-            <h4 className={styles.name}>{user.fullname}</h4>
+            <img className={styles.image} src={userSession.imageUrl} alt="User" />
+            <h4 className={styles.name}>{userSession.fullname}</h4>
             <h5 className={styles.username}>
-              <i className="fab fa-slack" /> {user.username}
+              <i className="fab fa-slack" /> {userSession.username}
             </h5>
             <button className={styles.btn} onClick={this.editUser}>
               Editar perfil
