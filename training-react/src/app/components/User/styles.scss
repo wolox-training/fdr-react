@@ -1,0 +1,73 @@
+$margin-small: 5px;
+$margin-medium: 10px;
+$margin-big: 15px;
+
+.user {
+  .btn {
+    border: 1px solid orange;
+    border-radius: 5px;
+    color: orange;
+    background: black;
+    margin: $margin-small;
+
+    &:hover {
+      border: 1px solid grey;
+      color: grey;
+    }
+  }
+
+  .btnBack {
+    display: flex;
+    justify-content: center;
+    margin: $margin-big;
+  }
+
+  .titleUser {
+    border-radius: 10px;
+    color: black;
+    display: flex;
+    justify-content: center;
+    margin: $margin-medium 0;
+  }
+  
+  .userContainer {
+    display: flex;
+    justify-content: space-around;
+  
+    .profile {
+      align-items: center;
+      background: black;
+      border-radius: 10px;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+      width: 40%;
+  
+      .image {
+        border-radius: 20px;
+      }
+  
+      .name {
+        margin: $margin-medium;
+      }
+  
+      .username {
+        margin: $margin-small;
+      }    
+    }
+  
+    .desc {
+      padding: 0 10px;
+      width: 60%;
+  
+      .generalInfo {
+        background: orange;
+        border-radius: 10px;
+        padding: 5px;
+        margin: 0;
+        text-align: center;
+      }
+    }
+  }
+}

@@ -12,5 +12,15 @@ export default {
         response.problem = 'User not found';
       }
       return response;
-    })
+    }),
+  setUser: async values => {
+    const { id, ...data } = values;
+    return api.put(`/user/${id}`, data).then(response => {
+      if (!response && !response.data.length) {
+        response.status = STATUS_NOT_FOUND;
+        response.problem = 'User not found';
+      }
+      return response;
+    });
+  }
 };

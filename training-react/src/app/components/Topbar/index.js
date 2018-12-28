@@ -20,7 +20,9 @@ class Topbar extends Component {
     const user = LocalStoreService.getItem(USER_SESSION);
     return (
       <div className={styles.topbar}>
-        <h2 className={styles.gameTitle}>Tic Tac Toe</h2>
+        <h2 className={styles.gameTitle}>
+          <Link to="/game">Tic Tac Toe</Link>
+        </h2>
         <div className={styles.login}>
           {user && user !== 'undefined' && (
             <div className={styles.loginInfo}>
@@ -40,10 +42,6 @@ class Topbar extends Component {
 }
 
 Topbar.propTypes = {
-  user: PropTypes.shape({
-    id: PropTypes.number,
-    email: PropTypes.string
-  }),
   history: PropTypes.shape()
 };
 

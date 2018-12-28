@@ -17,12 +17,28 @@ const actionsCreators = {
       LocalStoreService.saveItem(USER_SESSION, JSON.stringify(user));
       dispatch({
         type: actions.GET_USER_SUCCESS,
-        payload: response.data
+        payload: { user }
       });
     } else {
       dispatch({
         type: actions.GET_USER_FAILURE,
-        payload: response.problem
+        payload: { err: response.problem }
+      });
+    }
+  },
+  setUser: values => async dispatch => {
+    const response = await UserService.setUser(values);
+    if (response.status === 200) {
+      const user = response.data;
+      LocalStoreService.saveItem(USER_SESSION, JSON.stringify(user));
+      dispatch({
+        type: actions.GET_USER_SUCCESS,
+        payload: { user }
+      });
+    } else {
+      dispatch({
+        type: actions.GET_USER_FAILURE,
+        payload: { err: response.problem }
       });
     }
   }
