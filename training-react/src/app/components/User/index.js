@@ -6,7 +6,8 @@ import userActions from '../../../redux/user/actions';
 import LocalStoreService from '../../../services/LocalStoreService';
 import UserInfo from '../UserInfo';
 import UserEdit from '../UserEdit';
-import UserDetailsWithLoading from '../LoadingScreen';
+
+import UserDetailsWithLoading from './layout';
 
 const USER_SESSION = 'USER_SESSION';
 
@@ -31,12 +32,11 @@ class User extends Component {
     const userSession = user ? this.props.user : JSON.parse(LocalStoreService.getItem(USER_SESSION));
     const { isSettingUser } = this.state;
 
-    let infoUserSection = <UserInfo userSession={userSession} />;
-    if (isSettingUser) {
-      infoUserSection = (
-        <UserEdit userSession={userSession} setUser={setUser} editUser={this.editUser} {...this.props} />
-      );
-    }
+    const infoUserSection = isSettingUser ? (
+      <UserEdit userSession={userSession} setUser={setUser} editUser={this.editUser} {...this.props} />
+    ) : (
+      <UserInfo userSession={userSession} />
+    );
 
     return (
       <UserDetailsWithLoading

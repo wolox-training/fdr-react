@@ -1,16 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import LoadingItem from '../LoadingItem';
-import UserDetails from '../User/layout';
 
 function withLoadingScreen(WrappedComponent) {
-  return class LoadingScreen extends Component {
-    render() {
-      const { isLoading } = this.props;
-      if (isLoading) return <LoadingItem />;
-      return <WrappedComponent {...this.props} />;
-    }
+  return function LoadingScreen({ isLoading, ...otherProps }) {
+    if (isLoading) return <LoadingItem />;
+    return <WrappedComponent {...otherProps} />;
   };
 }
 
-export default withLoadingScreen(UserDetails);
+export default withLoadingScreen;

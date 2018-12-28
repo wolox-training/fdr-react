@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+import withLoadingScreen from '../LoadingScreen';
+
 import styles from './styles.scss';
 
 const UserDetails = ({ user, userSection, editUser }) => (
@@ -47,4 +49,4 @@ UserDetails.propTypes = {
   })
 };
 
-export default UserDetails;
+export default withLoadingScreen(UserDetails);
