@@ -6,12 +6,9 @@ import userActions from '../../../redux/user/actions';
 import LocalStoreService from '../../../services/LocalStoreService';
 import UserInfo from '../UserInfo';
 import UserEdit from '../UserEdit';
-import withLoadingScreen from '../LoadingScreen';
-
-import UserDetails from './layout';
+import UserDetailsWithLoading from '../LoadingScreen';
 
 const USER_SESSION = 'USER_SESSION';
-const UserDetailsWithLoading = withLoadingScreen(UserDetails);
 
 class User extends Component {
   state = {
