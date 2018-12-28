@@ -9,14 +9,9 @@ import styles from './styles.scss';
 
 class UserEdit extends Component {
   componentDidMount() {
-    const { userSession } = this.props;
-    this.props.initialize({
-      gender: userSession.gender,
-      country: userSession.country,
-      mail: userSession.mail,
-      username: userSession.username,
-      fullname: userSession.fullname
-    });
+    const { userSession, initialize } = this.props;
+    const { gender, country, mail, username, fullname } = userSession;
+    initialize({ gender, country, mail, username, fullname });
   }
 
   onSubmit = values => {
