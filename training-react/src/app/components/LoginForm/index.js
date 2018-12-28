@@ -10,7 +10,7 @@ import styles from './styles.scss';
 import { required, minLength, isEmail } from './validation';
 
 class LoginForm extends Component {
-  submit = values => {
+  login = values => {
     const { getUser, history } = this.props;
     getUser(values);
     history.push('/game');
@@ -20,8 +20,8 @@ class LoginForm extends Component {
     const { handleSubmit, err } = this.props;
     return (
       <div className={styles.login}>
-        <h2>Login</h2>
-        <form onSubmit={handleSubmit(this.submit)}>
+        <h2 className={styles.title}>Login</h2>
+        <form onSubmit={handleSubmit(this.login)}>
           <Field
             name="email"
             component={customInput}
@@ -47,6 +47,7 @@ class LoginForm extends Component {
 LoginForm.propTypes = {
   handleSubmit: PropTypes.func,
   getUser: PropTypes.func,
+  history: PropTypes.shape(),
   err: PropTypes.string
 };
 

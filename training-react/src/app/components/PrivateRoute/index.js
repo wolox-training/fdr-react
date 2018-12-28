@@ -6,7 +6,12 @@ import LoginForm from '../LoginForm';
 
 const USER_SESSION = 'USER_SESSION';
 
-export const PrivateRoute = ({ component: Component, ...rest }) => {
-  const user = JSON.parse(LocalStoreService.getItem(USER_SESSION));
-  return <Route {...rest} render={props => (user ? <Component {...props} /> : <LoginForm {...props} />)} />;
+export const PrivateRoute = ({ component: Component, isTopBar, ...rest }) => {
+  const user = LocalStoreService.getItem(USER_SESSION);
+  return (
+    <Route
+      {...rest}
+      render={props => (user && user !== 'undefined' ? <Component {...props} /> : <LoginForm {...props} />)}
+    />
+  );
 };

@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Game from '../Game';
+import Topbar from '../Topbar';
+import User from '../User';
 import { PrivateRoute } from '../PrivateRoute';
 import './styles.scss';
 
@@ -10,10 +12,12 @@ class App extends Component {
   render() {
     return (
       <Router>
+        <Route path="/" component={Topbar} />
         <Switch>
           <PrivateRoute exact path="/" component={Game} />
           <PrivateRoute exact path="/game" component={Game} />
-          <Route render={() => <h2>Page not found</h2>} />
+          <PrivateRoute exact path="/user/:userId" component={User} />
+          <Route path="*" render={() => <h2>Page not found</h2>} />
         </Switch>
       </Router>
     );

@@ -117,11 +117,18 @@ button[type='submit'] {
   top: -8px;
 }
 
-.login {
 
+.title {
+  display: flex;
+  justify-content: center;
+}
+
+.login {
   .error {
     color: red;
-    margin-top: 10px;
+    display: flex;
     font-weight: bold;
+    justify-content: center;
+    margin-top: 10px;
   }
 }

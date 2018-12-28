@@ -5,14 +5,13 @@ import Board from '../Board';
 import calculateWinner from './utils';
 import styles from './styles.scss';
 
-const USER_SESSION = 'USER_SESSION';
-
 class Game extends Component {
   state = {
-    /* eslint-disable prettier/prettier */
-    history: [{
-      squares: Array(9).fill(null),
-    }],
+    history: [
+      {
+        squares: Array(9).fill(null)
+      }
+    ],
     xIsNext: true,
     stepNumber: 0,
     isWinner: null
@@ -59,7 +58,6 @@ class Game extends Component {
   render() {
     const { history, stepNumber, isWinner } = this.state;
     const current = history[stepNumber];
-    const user = JSON.parse(localStorage.getItem(USER_SESSION));
 
     const moves = history.map((step, move) => {
       const desc = `Go to ${move ? `move #${move}` : 'game start'}`;
@@ -72,9 +70,6 @@ class Game extends Component {
 
     return (
       <div className={styles.game}>
-        <div>
-          <h4>User: {user.mail}</h4>
-        </div>
         <div className={styles.board}>
           <Board squares={current.squares} onClick={this.handleClick} />
           <div className={styles.info}>
