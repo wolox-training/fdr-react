@@ -15,11 +15,6 @@ const actionCreators = {
       withPostSuccess((dispatch, response) => {
         const user = response.data[0];
         localStorage.setItem(USER_SESSION, JSON.stringify(user));
-        dispatch({
-          type: actions.GET_USER_SUCCESS,
-          target: 'user',
-          payload: { user }
-        });
       })
     ]
   }),
@@ -32,11 +27,6 @@ const actionCreators = {
       withPostSuccess((dispatch, response) => {
         const user = response.data;
         localStorage.setItem(USER_SESSION, JSON.stringify(user));
-        dispatch({
-          type: actions.SET_USER_SUCCESS,
-          target: 'user',
-          payload: { user }
-        });
       })
     ]
   })

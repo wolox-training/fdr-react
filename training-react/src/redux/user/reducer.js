@@ -7,7 +7,13 @@ const initialState = {
 };
 
 const reducerDescription = {
-  primaryActions: [actions.GET_USER, actions.SET_USER]
+  primaryActions: [actions.GET_USER, actions.SET_USER],
+  override: {
+    [actions.SET_USER_SUCCESS]: (state, action) => {
+      const user = [action.payload];
+      return { ...state, user };
+    }
+  }
 };
 
 export default createReducer(initialState, completeReducer(reducerDescription));
