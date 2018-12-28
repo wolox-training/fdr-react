@@ -42,10 +42,6 @@ class Topbar extends Component {
 }
 
 Topbar.propTypes = {
-  userSession: PropTypes.shape({
-    id: PropTypes.number,
-    email: PropTypes.string
-  }),
   history: PropTypes.shape()
 };
 
