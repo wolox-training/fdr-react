@@ -5,18 +5,18 @@ import styles from './styles.scss';
 
 class UserInfo extends Component {
   render() {
-    const { user } = this.props;
+    const { userSession } = this.props;
     return (
       <div className={styles.desc}>
         <h4 className={styles.generalInfo}>General Information</h4>
         <h5>
-          <i className="far fa-user" /> Gender: {user.gender}
+          <i className="far fa-user" /> Gender: {userSession.gender}
         </h5>
         <h5>
-          <i className="fas fa-globe-americas" /> Country: {user.country}
+          <i className="fas fa-globe-americas" /> Country: {userSession.country}
         </h5>
         <h5>
-          <i className="fas fa-envelope" /> Mail: {user.mail}
+          <i className="fas fa-envelope" /> Mail: {userSession.mail}
         </h5>
       </div>
     );
@@ -24,7 +24,7 @@ class UserInfo extends Component {
 }
 
 UserInfo.propTypes = {
-  user: PropTypes.shape({
+  userSession: PropTypes.shape({
     id: PropTypes.number,
     mail: PropTypes.string,
     password: PropTypes.string,

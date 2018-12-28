@@ -31,11 +31,14 @@ class User extends Component {
 
   render() {
     const { user, setUser } = this.props;
+    const userSession = user ? this.props.user : JSON.parse(LocalStoreService.getItem(USER_SESSION));
     const { isSettingUser } = this.state;
 
-    let infoUserSection = <UserInfo user={user} />;
+    let infoUserSection = <UserInfo userSession={userSession} />;
     if (isSettingUser) {
-      infoUserSection = <UserEdit user={user} setUser={setUser} />;
+      infoUserSection = (
+        <UserEdit userSession={userSession} setUser={setUser} editUser={this.editUser} {...this.props} />
+      );
     }
 
     return (
