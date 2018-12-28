@@ -17,7 +17,7 @@ const actionsCreators = {
       LocalStoreService.saveItem(USER_SESSION, JSON.stringify(user));
       dispatch({
         type: actions.GET_USER_SUCCESS,
-        payload: { user: response.data }
+        payload: { user }
       });
     } else {
       dispatch({
@@ -33,7 +33,7 @@ const actionsCreators = {
       LocalStoreService.saveItem(USER_SESSION, JSON.stringify(user));
       dispatch({
         type: actions.GET_USER_SUCCESS,
-        payload: { user: response.data }
+        payload: { user }
       });
     } else {
       dispatch({
