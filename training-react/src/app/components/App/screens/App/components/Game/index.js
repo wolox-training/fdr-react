@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 
-import Board from '../../screens/Board';
-
 import calculateWinner from './utils';
-import styles from './styles.scss';
+import GameDetails from './layout';
 
 class Game extends Component {
   state = {
@@ -58,26 +56,15 @@ class Game extends Component {
   render() {
     const { history, stepNumber, isWinner } = this.state;
     const current = history[stepNumber];
-
-    const moves = history.map((step, move) => {
-      const desc = `Go to ${move ? `move #${move}` : 'game start'}`;
-      return (
-        <li key={step}>
-          <button onClick={() => this.jumpTo(move)}>{desc}</button>
-        </li>
-      );
-    });
-
     return (
-      <div className={styles.game}>
-        <div className={styles.board}>
-          <Board squares={current.squares} onClick={this.handleClick} />
-          <div className={styles.info}>
-            <div>{this.getStatus(isWinner)}</div>
-            <ol>{moves}</ol>
-          </div>
-        </div>
-      </div>
+      <GameDetails
+        isWinner={isWinner}
+        current={current}
+        history={history}
+        boardClick={this.handleClick}
+        getStatus={this.getStatus}
+        jumpTo={this.jumpTo}
+      />
     );
   }
 }
