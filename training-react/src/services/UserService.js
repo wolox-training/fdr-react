@@ -26,6 +26,7 @@ export default {
       if (!response && !response.data.length) {
         response.status = STATUS_NOT_FOUND;
         response.problem = 'User not found';
+        response.ok = false;
       }
       return response;
     });
