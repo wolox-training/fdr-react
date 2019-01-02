@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import LocalStoreService from '../../../services/LocalStoreService';
+import LocalStoreService from '../../../../../services/LocalStoreService';
 
 import styles from './styles.scss';
 

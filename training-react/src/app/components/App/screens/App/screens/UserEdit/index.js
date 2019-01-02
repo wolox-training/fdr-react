@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import PropTypes from 'prop-types';
 
-import { customInput } from '../Field';
-import { required, isEmail } from '../LoginForm/validation';
+import { customInput } from '../../../../components/Field';
+import { required, isEmail } from '../../components/Login/validation';
 
 import styles from './styles.scss';
 

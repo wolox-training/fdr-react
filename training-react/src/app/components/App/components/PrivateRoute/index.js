@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 
-import LocalStoreService from '../../../services/LocalStoreService';
-import LoginForm from '../LoginForm';
+import LocalStoreService from '../../../../../services/LocalStoreService';
+import LoginForm from '../../screens/App/components/Login';
 
 const USER_SESSION = 'USER_SESSION';
 
