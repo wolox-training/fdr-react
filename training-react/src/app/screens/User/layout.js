@@ -2,10 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import withLoadingScreen from '../../../../components/Loading';
-import UserInfo from '../../screens/UserInfo';
-import UserEdit from '../../screens/UserEdit';
+import withLoadingScreen from '../../components/Loading';
 
+import UserInfo from './components/UserInfo';
+import UserEdit from './components/UserEdit';
 import styles from './styles.scss';
 
 function UserDetails({ user, isSettingUser, editUser, setUser }) {

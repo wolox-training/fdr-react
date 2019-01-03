@@ -3,8 +3,8 @@ import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { customInput } from '../../../../components/Field';
-import userActions from '../../../../../../../redux/user/actions';
+import { customInput } from '../../components/Field';
+import userActions from '../../../redux/user/actions';
 
 import styles from './styles.scss';
 import { required, minLength, isEmail } from './validation';

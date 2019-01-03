@@ -3,7 +3,7 @@ import { Field, reduxForm } from 'redux-form';
 import PropTypes from 'prop-types';
 
 import { customInput } from '../../../../components/Field';
-import { required, isEmail } from '../../components/Login/validation';
+import { required, isEmail } from '../../../Login/validation';
 
 import styles from './styles.scss';
 
