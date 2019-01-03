@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import userActions from '../../../../../../../redux/user/actions';
-import LocalStoreService from '../../../../../../../services/LocalStoreService';
+import userActions from '../../../redux/user/actions';
+import LocalStoreService from '../../../services/LocalStoreService';
 
 import UserDetailsWithLoading from './layout';
 

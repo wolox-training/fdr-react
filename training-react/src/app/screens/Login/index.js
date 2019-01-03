@@ -3,7 +3,7 @@ import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import userActions from '../../../../../../../redux/user/actions';
+import userActions from '../../../redux/user/actions';
 
 import LoginDetails from './layout';
 

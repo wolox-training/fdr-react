@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import LocalStoreService from '../../../../../services/LocalStoreService';
+import LocalStoreService from '../../../services/LocalStoreService';
 
 import TopbarDetails from './layout';
 
