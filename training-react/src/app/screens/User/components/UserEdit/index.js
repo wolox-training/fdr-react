@@ -18,7 +18,7 @@ class UserEdit extends Component {
   };
 
   render() {
-    return <UserEditDetails onSubmit={this.onSubmit} {...this.props} />;
+    return <UserEditDetails onSubmit={this.onSubmit} handleSubmit={this.props.handleSubmit} />;
   }
 }
 
@@ -35,7 +35,8 @@ UserEdit.propTypes = {
   }),
   initialize: PropTypes.func,
   setUser: PropTypes.func,
-  editUser: PropTypes.func
+  editUser: PropTypes.func,
+  handleSubmit: PropTypes.func
 };
 
 export default reduxForm({ form: 'edit' })(UserEdit);

@@ -7,8 +7,7 @@ import { required, isEmail } from '../../../Login/validation';
 
 import styles from './styles.scss';
 
-function UserEditDetails({ onSubmit, ...props }) {
-  const { handleSubmit } = props;
+function UserEditDetails({ onSubmit, handleSubmit }) {
   return (
     <div className={styles.desc}>
       <h2 className={styles.title}>Edit</h2>
