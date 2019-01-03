@@ -1,47 +1,35 @@
-import UserService from '../../services/UserService';
-import LocalStoreService from '../../services/LocalStoreService';
+import { completeTypes, createTypes, withPostSuccess } from 'redux-recompose';
 
+import UserService from '../../services/UserService';
+
+export const actions = createTypes(completeTypes(['GET_USER', 'SET_USER']), '@USER');
 const USER_SESSION = 'USER_SESSION';
 
-export const actions = {
-  GET_USER: '@@USER/GET_USER',
-  GET_USER_SUCCESS: '@@USER/GET_USER_SUCCESS',
-  GET_USER_FAILURE: '@@USER/GET_USER_FAILURE'
+const actionCreators = {
+  getUser: values => ({
+    type: actions.GET_USER,
+    target: 'user',
+    service: UserService.getUser,
+    payload: values,
+    injections: [
+      withPostSuccess((dispatch, response) => {
+        const user = response.data[0];
+        localStorage.setItem(USER_SESSION, JSON.stringify(user));
+      })
+    ]
+  }),
+  setUser: values => ({
+    type: actions.SET_USER,
+    target: 'user',
+    service: UserService.setUser,
+    payload: values,
+    injections: [
+      withPostSuccess((dispatch, response) => {
+        const user = response.data;
+        localStorage.setItem(USER_SESSION, JSON.stringify(user));
+      })
+    ]
+  })
 };
 
-const actionsCreators = {
-  getUser: values => async dispatch => {
-    const response = await UserService.getUser(values);
-    if (response.status === 200) {
-      const user = response.data[0];
-      LocalStoreService.saveItem(USER_SESSION, JSON.stringify(user));
-      dispatch({
-        type: actions.GET_USER_SUCCESS,
-        payload: { user }
-      });
-    } else {
-      dispatch({
-        type: actions.GET_USER_FAILURE,
-        payload: { err: response.problem }
-      });
-    }
-  },
-  setUser: values => async dispatch => {
-    const response = await UserService.setUser(values);
-    if (response.status === 200) {
-      const user = response.data;
-      LocalStoreService.saveItem(USER_SESSION, JSON.stringify(user));
-      dispatch({
-        type: actions.GET_USER_SUCCESS,
-        payload: { user }
-      });
-    } else {
-      dispatch({
-        type: actions.GET_USER_FAILURE,
-        payload: { err: response.problem }
-      });
-    }
-  }
-};
-
-export default actionsCreators;
+export default actionCreators;

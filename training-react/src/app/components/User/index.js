@@ -31,7 +31,7 @@ class User extends Component {
 
   render() {
     const { user, setUser } = this.props;
-    const userSession = user ? this.props.user : JSON.parse(LocalStoreService.getItem(USER_SESSION));
+    const userSession = user ? user[0] : JSON.parse(LocalStoreService.getItem(USER_SESSION));
     const { isSettingUser } = this.state;
 
     let infoUser = <UserInfo userSession={userSession} />;
@@ -86,16 +86,18 @@ const mapDispatchToProps = dispatch => ({
 User.propTypes = {
   getUser: PropTypes.func,
   setUser: PropTypes.func,
-  user: PropTypes.shape({
-    id: PropTypes.number,
-    mail: PropTypes.string,
-    password: PropTypes.string,
-    username: PropTypes.string,
-    fullname: PropTypes.string,
-    gender: PropTypes.string,
-    country: PropTypes.string,
-    imageUrl: PropTypes.string
-  })
+  user: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      mail: PropTypes.string,
+      password: PropTypes.string,
+      username: PropTypes.string,
+      fullname: PropTypes.string,
+      gender: PropTypes.string,
+      country: PropTypes.string,
+      imageUrl: PropTypes.string
+    })
+  )
 };
 
 export default connect(

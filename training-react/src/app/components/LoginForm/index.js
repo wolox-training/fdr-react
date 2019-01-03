@@ -53,7 +53,7 @@ LoginForm.propTypes = {
 
 const mapStateToProps = state => ({
   user: state.users.user,
-  err: state.users.error
+  err: state.users.userError
 });
 
 const mapDispatchToProps = dispatch => ({
