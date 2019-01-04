@@ -11,6 +11,10 @@ configure({ adapter: new Adapter() });
 describe('UserList', () => {
   xit('shows new user when props are changed', () => {    
   });
-  xit('setProps makes componentDidUpdate to be executed', () => {
+  it('setProps makes componentDidUpdate to be executed', () => {
+    jest.spyOn(UserList.prototype, 'componentDidUpdate')
+    const wrapper = shallow(<UserList />);
+    wrapper.setProps({ hide: true }); //causes a re-render of our component
+    expect(UserList.prototype.componentDidUpdate.mock.calls.length).toBe(1);
   });
 });

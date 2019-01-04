@@ -8,10 +8,12 @@ import App from './App';
 
 configure({ adapter: new Adapter() });
 describe('App', () => {
-  xit('renders without crashing', () => {
+  it('renders without crashing', () => {
+    shallow(<App />);
   });
 
-  xit('matches the snapshot', () => {
+  it('matches the snapshot', () => {
     const tree = mount(<App />);
+    expect(toJson(tree)).toMatchSnapshot();
   });
 });
