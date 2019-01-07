@@ -15,21 +15,95 @@ describe('Signup Form (use FIELDS constants)', () => {
   let browser;
   let page;
 
-  beforeAll(async () => {}); // start the browser
+  beforeAll(async () => {
+    browser = await Puppeteer.launch();
+    page = await browser.newPage();
+    page.setViewport({ width: 500, height: 2400 });
+  });
 
-  beforeEach(async () => {}); // go to root page
+  beforeEach(async () => {
+    await page.goto(TEST_BASE_URL);
+  });
 
-  afterAll(() => {}); // close browesr
+  afterAll(() => {
+    browser.close();
+  });
 
-  it('Can submit signup form', async () => {});
+  it('Can submit signup form', async () => {
+    await page.$eval('.signup-form', form => form.submit());
+  });
+  it(
+    'Successful submit',
+    async () => {
+      await page.waitForSelector('.signup-form');
+      await page.click('input[name=firstName]');
+      await page.type('input[name=firstName]', person.firstName);
+      await page.click('input[name=lastName]');
+      await page.type('input[name=lastName]', person.lastName);
+      await page.click('input[name=email]');
+      await page.type('input[name=email]', person.email);
 
-  it('Successful submit', async () => {}, 16000);
+      await page.click('button[type=submit]');
+      await page.waitForSelector('.result');
+    },
+    16000
+  );
 
-  it('3 fields are required', async () => {}, 16000);
+  it(
+    '3 fields are required',
+    async () => {
+      await page.waitForSelector('.signup-form');
+      await page.click('input[name=firstName]');
+      await page.type('input[name=firstName]', '');
+      await page.click('input[name=lastName]');
+      await page.type('input[name=lastName]', '');
+      await page.click('input[name=email]');
+      await page.type('input[name=email]', '');
 
-  it('First name is required', async () => {}, 16000);
+      await page.click('button[type=submit]');
+      await page.waitForSelector('.error-firstName');
+      await page.waitForSelector('.error-lastName');
+      await page.waitForSelector('.error-email');
+    },
+    16000
+  );
 
-  it('Last name is required', async () => {}, 16000);
+  it(
+    'First name is required',
+    async () => {
+      await page.waitForSelector('.signup-form');
+      await page.click('input[name=firstName]');
+      await page.type('input[name=firstName]', '');
 
-  it('Email is required', async () => {}, 16000);
+      await page.click('button[type=submit]');
+      await page.waitForSelector('.error-firstName');
+    },
+    16000
+  );
+
+  it(
+    'Last name is required',
+    async () => {
+      await page.waitForSelector('.signup-form');
+      await page.click('input[name=lastName]');
+      await page.type('input[name=lastName]', '');
+
+      await page.click('button[type=submit]');
+      await page.waitForSelector('.error-lastName');
+    },
+    16000
+  );
+
+  it(
+    'Email is required',
+    async () => {
+      await page.waitForSelector('.signup-form');
+      await page.click('input[name=email]');
+      await page.type('input[name=email]', '');
+
+      await page.click('button[type=submit]');
+      await page.waitForSelector('.error-email');
+    },
+    16000
+  );
 });
