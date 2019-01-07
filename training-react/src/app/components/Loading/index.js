@@ -1,6 +1,6 @@
 import React from 'react';
 
-import LoadingItem from '../LoadingItem';
+import LoadingItem from './layout';
 
 function withLoadingScreen(WrappedComponent) {
   return function LoadingScreen({ isLoading, ...otherProps }) {
