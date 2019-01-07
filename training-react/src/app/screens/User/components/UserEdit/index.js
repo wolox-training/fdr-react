@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { reduxForm } from 'redux-form';
 import PropTypes from 'prop-types';
 
-import { customInput } from '../../../../components/Field';
-import { required, isEmail } from '../../../Login/validation';
-
-import styles from './styles.scss';
+import UserEditDetails from './layout';
 
 class UserEdit extends Component {
   componentDidMount() {
@@ -21,27 +18,7 @@ class UserEdit extends Component {
   };
 
   render() {
-    const { handleSubmit } = this.props;
-
-    return (
-      <div className={styles.desc}>
-        <h2 className={styles.title}>Edit</h2>
-        <form onSubmit={handleSubmit(this.onSubmit)}>
-          <Field name="username" component={customInput} type="text" label="Username" />
-          <Field name="fullname" component={customInput} type="text" label="Fullname" />
-          <Field name="gender" component={customInput} type="text" label="Gender" />
-          <Field name="country" component={customInput} type="text" label="Country" />
-          <Field
-            name="mail"
-            component={customInput}
-            type="text"
-            label="Mail"
-            validate={[required, isEmail]}
-          />
-          <button type="submit">Submit</button>
-        </form>
-      </div>
-    );
+    return <UserEditDetails onSubmit={this.onSubmit} handleSubmit={this.props.handleSubmit} />;
   }
 }
 
@@ -57,9 +34,9 @@ UserEdit.propTypes = {
     imageUrl: PropTypes.string
   }),
   initialize: PropTypes.func,
-  handleSubmit: PropTypes.func,
   setUser: PropTypes.func,
-  editUser: PropTypes.func
+  editUser: PropTypes.func,
+  handleSubmit: PropTypes.func
 };
 
 export default reduxForm({ form: 'edit' })(UserEdit);
