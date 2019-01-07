@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
+import App from '../src/app/index';
+
 import store from './redux/store';
 import './scss/index.scss';
 import registerServiceWorker from './registerServiceWorker';
@@ -13,8 +15,6 @@ function WrappedAppWithRedux() {
     </Provider>
   );
 }
-
-import App from '~components/App'; // eslint-disable-line import/first
 
 ReactDOM.render(<WrappedAppWithRedux />, document.getElementById('root'));
 registerServiceWorker();

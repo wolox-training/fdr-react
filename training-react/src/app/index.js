@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import User from '../../screens/User';
-import Topbar from '../Topbar';
-import { PrivateRoute } from '../PrivateRoute';
-import Game from '../../screens/Game';
+import User from './screens/User';
+import Topbar from './components/Topbar';
+import { PrivateRoute } from './components/PrivateRoute';
+import Game from './screens/Game';
 import './styles.scss';
 
 class App extends Component {
